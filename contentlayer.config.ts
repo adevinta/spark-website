@@ -36,6 +36,7 @@ export const Doc = defineDocumentType(() => ({
       type: "json",
       resolve: (doc) => {
         const slug = doc._raw.sourceFileName.replace(/\.mdx$/, "");
+        console.log(examples, slug);
         return examples[slug];
       },
     },

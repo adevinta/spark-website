@@ -4,7 +4,6 @@ import { Header } from "@/components/Header";
 import { MDXComponent } from "@/components/MDX/MDXComponent";
 import { SideNav } from "@/components/SideNav";
 import { SideNavLink } from "@/components/SideNavLink";
-import Link from "next/link";
 import { SideNavSeparator } from "@/components/SideNavSeparator";
 import { Fragment } from "react";
 
@@ -29,14 +28,9 @@ const DocDetailPage = ({ categories, doc }: DocDetailPageProps) => {
                   <SideNavSeparator>{category}</SideNavSeparator>
 
                   {docs.map((doc) => (
-                    <Link
-                      key={doc.slug}
-                      href={`/docs/${doc.slug}`}
-                      passHref
-                      legacyBehavior
-                    >
-                      <SideNavLink>{doc.title}</SideNavLink>
-                    </Link>
+                    <SideNavLink key={doc.slug} href={`/docs/${doc.slug}`}>
+                      {doc.title}
+                    </SideNavLink>
                   ))}
                 </Fragment>
               );
