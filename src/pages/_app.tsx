@@ -1,6 +1,22 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import { Nunito_Sans } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const nunito = Nunito_Sans({
+  subsets: ["latin"],
+  variable: "--font-nunito-sans",
+});
+
+import { AppProps } from "next/app";
+
+function App({ Component, pageProps }: AppProps) {
+  return (
+    <ThemeProvider>
+      <div className={nunito.className}>
+        <Component {...pageProps} />
+      </div>
+    </ThemeProvider>
+  );
 }
+
+export default App;
