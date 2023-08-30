@@ -7,8 +7,8 @@ const nunito = Nunito_Sans({
   variable: "--font-nunito-sans",
 });
 
-import { AppProps } from "next/app"
-import { LayoutProgress } from "@/components/Layout/LayoutProgress"
+import { AppProps } from "next/app";
+import { LayoutProgress } from "@/components/Layout/LayoutProgress";
 import { DefaultSeo } from "@/components/Shared/DefaultSeo"
 
 function App({ Component, pageProps }: AppProps) {
