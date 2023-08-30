@@ -1,16 +1,16 @@
-import { Header } from "@/components/Header";
-import { Container } from "@/components/Container";
+import { LayoutHeader } from "@/components/Layout/LayoutHeader";
+import { LayoutContainer } from "@/components/Layout/LayoutContainer";
 
 export default function IndexPage() {
   return (
     <>
-      <Header />
+      <LayoutHeader />
 
-      <main>
-        <Container className="flex flex-col gap-sm my-xl">
+      <LayoutContainer className="flex flex-col gap-sm my-xl" asChild>
+        <main>
           <h1 className="text-display-2">Home</h1>
-        </Container>
-      </main>
+        </main>
+      </LayoutContainer>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { cx } from "class-variance-authority";
-import Link, { LinkProps } from "next/link";
+import Link from "next/link";
 import { ActiveLink } from "./ActiveLink";
 import { ComponentProps } from "react";
 

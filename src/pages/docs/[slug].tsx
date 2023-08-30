@@ -1,41 +1,22 @@
-import { Container } from "src/components/Container";
 import { Doc, allDocs } from "contentlayer/generated";
-import { Header } from "@/components/Header";
+
+import { LayoutContainer } from "@/components/Layout/LayoutContainer";
+import { LayoutHeader } from "@/components/Layout/LayoutHeader";
 import { MDXComponent } from "@/components/MDX/MDXComponent";
-import { SideNav } from "@/components/SideNav";
-import { SideNavLink } from "@/components/SideNavLink";
-import { SideNavSeparator } from "@/components/SideNavSeparator";
-import { Fragment } from "react";
+import { LayoutSideNav } from "@/components/Layout/LayoutSideNav";
 
 interface DocDetailPageProps {
-  categories: Map<string, Array<Doc>>;
   doc: Doc;
 }
 
-const DocDetailPage = ({ categories, doc }: DocDetailPageProps) => {
+const DocDetailPage = ({ doc }: DocDetailPageProps) => {
   return (
     <>
-      <Header />
+      <LayoutHeader />
 
-      <main>
-        <Container className="flex gap-2xl">
-          <SideNav className="hidden md:block py-lg">
-            {Object.keys(categories).map((category) => {
-              const docs = categories[category];
-
-              return (
-                <Fragment key={category}>
-                  <SideNavSeparator>{category}</SideNavSeparator>
-
-                  {docs.map((doc) => (
-                    <SideNavLink key={doc.slug} href={`/docs/${doc.slug}`}>
-                      {doc.title}
-                    </SideNavLink>
-                  ))}
-                </Fragment>
-              );
-            })}
-          </SideNav>
+      <LayoutContainer className="flex gap-2xl" asChild>
+        <main>
+          <LayoutSideNav />
 
           <div className="flex-1 min-w-0">
             <MDXComponent
@@ -43,8 +24,8 @@ const DocDetailPage = ({ categories, doc }: DocDetailPageProps) => {
               globals={{ examples: doc.examples }}
             />
           </div>
-        </Container>
-      </main>
+        </main>
+      </LayoutContainer>
     </>
   );
 };
@@ -67,19 +48,8 @@ export async function getStaticProps({ params }) {
     return { notFound: true };
   }
 
-  const categories = allDocs.reduce((categories, doc) => {
-    const category = doc.category;
-
-    return {
-      ...categories,
-      [category]: Array.isArray(categories[category])
-        ? [...categories[category], doc]
-        : [doc],
-    };
-  }, {});
-
   return {
-    props: { categories, doc },
+    props: { doc },
   };
 }
 
