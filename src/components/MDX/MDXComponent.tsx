@@ -1,5 +1,5 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
-import { CodeEditor } from "@/components/CodeEditor";
+import { CodeEditor } from "@/components/Shared/CodeEditor";
 
 import { H1 } from "./H1";
 import { H2 } from "./H2";

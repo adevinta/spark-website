@@ -8,13 +8,13 @@ const nunito = Nunito_Sans({
 });
 
 import { AppProps } from "next/app";
-import { RouteProgress } from "@/components/RouteProgress";
+import { LayoutProgress } from "@/components/Layout/LayoutProgress";
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
       <div className={nunito.className}>
-        <RouteProgress />
+        <LayoutProgress />
         <Component {...pageProps} />
       </div>
     </ThemeProvider>

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Highlight, themes } from "prism-react-renderer";
 import { InlineCode } from "./InlineCode";
-import { CodeCopyButton } from "../CodeCopyButton";
+import { CodeCopyButton } from "../Shared/CodeCopyButton";
 
 interface Props {
   className: string;
