@@ -37,5 +37,9 @@ next-env.d.ts
 # contentlayer
 .contentlayer
 
+# seo
+public/sitemap*
+public/robots.txt
+
 # ide
 .idea
