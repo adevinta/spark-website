@@ -39,9 +39,9 @@ export const Layout = ({ children, className, ...props }: LayoutProps) => {
             className={cx(
               'relative w-full grow-0',
               'flex flex-row items-stretch justify-center',
-              'sm:w-full sm:px-lg',
+              'sm:w-full',
               'md:w-full',
-              'lg:w-[calc(1*var(--sz-208)+var(--sz-768))] lg:px-none',
+              'lg:w-[calc(1*var(--sz-208)+var(--sz-768))]',
               'xl:w-[calc(2*var(--sz-208)+var(--sz-768))]',
               '2xl:w-[calc(3*var(--sz-208)+var(--sz-768))]',
               '3xl:w-[calc(4*var(--sz-208)+var(--sz-768))]',
@@ -51,7 +51,11 @@ export const Layout = ({ children, className, ...props }: LayoutProps) => {
             {leadingPanel}
             <main
               className={cx(
-                'relative flex grow flex-row flex-nowrap justify-center lg:min-w-sz-768 xl:min-w-[calc(2*var(--sz-208)+var(--sz-768))] 2xl:min-w-[calc(2*var(--sz-208)+var(--sz-768))] 3xl:min-w-[calc(2*var(--sz-208)+var(--sz-768))]',
+                'relative flex grow flex-row flex-nowrap justify-around',
+                'lg:min-w-sz-768',
+                'xl:min-w-[var(--sz-768)] xl:max-w-[calc(2*var(--sz-208)+var(--sz-768))]',
+                '2xl:min-w-[var(--sz-768)] 2xl:max-w-[calc(2*var(--sz-208)+var(--sz-768))]',
+                '2xl:min-w-[var(--sz-768)] 3xl:max-w-[calc(2*var(--sz-208)+var(--sz-768))]',
               )}
             >
               {leadingSidebar}

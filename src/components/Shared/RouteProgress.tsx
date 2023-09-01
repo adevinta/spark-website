@@ -9,7 +9,7 @@ export const RouteProgress = (props: RouteProgressProps) => {
   return (
     <NProgress
       key={key}
-      className="fixed top-none z-raised w-full"
+      className="fixed top-none z-sticky w-full"
       isAnimating={isRouteChanging}
       {...props}
     />
