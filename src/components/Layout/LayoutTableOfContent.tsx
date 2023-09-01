@@ -1,5 +1,9 @@
 import { cx } from "class-variance-authority";
-import { TableOfContent, TableOfContentProps } from "../Shared/TableOfContent";
+
+import {
+  TableOfContent,
+  TableOfContentProps,
+} from "@/components/Shared/TableOfContent";
 
 export type LayoutTableOfContentProps = TableOfContentProps;
 
