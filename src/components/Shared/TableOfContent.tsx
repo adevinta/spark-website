@@ -39,8 +39,6 @@ export const TableOfContent = ({
     (heading) => heading.id === activeAnchor?.id
   );
 
-  if (!headings?.length) return null;
-
   return (
     <div
       className={cx(className, [
