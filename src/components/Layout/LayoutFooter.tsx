@@ -17,8 +17,8 @@ export const LayoutFooter = forwardRef<HTMLElement, LayoutFooterProps>(
         "md:w-full",
         "lg:w-sz-768",
         "xl:w-[calc(2*var(--sz-208)+var(--sz-768))]",
-        "2xl:w-[calc(3*var(--sz-208)+var(--sz-768))]",
-        "3xl:w-[calc(4*var(--sz-208)+var(--sz-768))]",
+        "2xl:w-[calc(2*var(--sz-208)+var(--sz-768))]",
+        "3xl:w-[calc(2*var(--sz-208)+var(--sz-768))]",
         className,
       )}
     >
