@@ -9,11 +9,13 @@ const nunito = Nunito_Sans({
 
 import { AppProps } from "next/app";
 import { LayoutProgress } from "@/components/Layout/LayoutProgress";
+import { DefaultSeo } from "@/components/Shared/DefaultSeo";
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
       <div className={nunito.className}>
+        <DefaultSeo />
         <LayoutProgress />
         <Component {...pageProps} />
       </div>
