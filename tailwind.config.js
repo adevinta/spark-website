@@ -17,6 +17,10 @@ module.exports = {
         monospace:
           'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
       },
+      screens: {
+        ["2xl"]: "1440px",
+        ["3xl"]: "1600px",
+      },
     },
   },
   plugins: [

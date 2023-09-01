@@ -44,6 +44,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "prettier": "^3.0.3",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1"

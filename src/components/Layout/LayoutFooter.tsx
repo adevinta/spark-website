@@ -1,13 +1,13 @@
 import { forwardRef, ReactElement } from "react";
-import { cx } from "class-variance-authority";
 import { Slot } from "@spark-ui/slot";
+import { cx } from "class-variance-authority";
 
-export interface LayoutHeaderProps {
+export interface LayoutFooterProps {
   asChild?: boolean;
   children: ReactElement;
   className?: string;
 }
-export const LayoutHeader = forwardRef<HTMLElement, LayoutHeaderProps>(
+export const LayoutFooter = forwardRef<HTMLElement, LayoutFooterProps>(
   ({ children, className }, forwardedRef) => (
     <Slot
       ref={forwardedRef}
@@ -27,4 +27,4 @@ export const LayoutHeader = forwardRef<HTMLElement, LayoutHeaderProps>(
   ),
 );
 
-LayoutHeader.displayName = "Layout.Header";
+LayoutFooter.displayName = "Layout.Footer";
