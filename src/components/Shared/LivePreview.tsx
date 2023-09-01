@@ -9,7 +9,7 @@ export interface LivePreviewProps
 
 export const LivePreview = ({ className, ...others }: LivePreviewProps) => {
   return (
-    <div className={cx(className, "p-lg overflow-auto")}>
+    <div className={cx(className, "px-xl py-2xl overflow-auto")}>
       <LivePreviewPrimitive {...others} />
     </div>
   );

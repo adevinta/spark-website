@@ -19,7 +19,7 @@ export const CodeEditor = ({
 
   return (
     <LiveProvider theme={themes.vsDark} code={code} {...others}>
-      <div className="grid grid-cols-1 md:grid-cols-2 my-xl shadow-xl text-body-2 rounded-md overflow-hidden">
+      <div className="grid grid-cols-1 my-xl shadow-xl text-body-2 rounded-md overflow-hidden">
         <div className="relative">
           <LiveEditor size={size} />
 
