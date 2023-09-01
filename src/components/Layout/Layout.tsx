@@ -39,9 +39,9 @@ export const Layout = ({ children, className, ...props }: LayoutProps) => {
             className={cx(
               'relative w-full grow-0',
               'flex flex-row items-stretch justify-center',
-              'sm:w-full',
+              'sm:w-full sm:px-lg',
               'md:w-full',
-              'lg:w-sz-768',
+              'lg:w-[calc(1*var(--sz-208)+var(--sz-768))] lg:px-none',
               'xl:w-[calc(2*var(--sz-208)+var(--sz-768))]',
               '2xl:w-[calc(3*var(--sz-208)+var(--sz-768))]',
               '3xl:w-[calc(4*var(--sz-208)+var(--sz-768))]',

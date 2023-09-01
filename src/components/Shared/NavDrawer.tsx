@@ -1,24 +1,20 @@
-import { Drawer, DrawerProps } from "@spark-ui/drawer";
-import { Button } from "@spark-ui/button";
-import { LayoutNav } from "./LayoutNav";
-import { VisuallyHidden } from "@spark-ui/visually-hidden";
+import { Drawer, DrawerProps } from '@spark-ui/drawer'
+import { Nav } from './Nav'
+import { VisuallyHidden } from '@spark-ui/visually-hidden'
 
-export type LayoutNavDrawerProps = DrawerProps;
+export type NavDrawerProps = DrawerProps
 
-export const LayoutNavDrawer = ({
-  onOpenChange,
-  ...others
-}: LayoutNavDrawerProps) => {
+export const NavDrawer = ({ onOpenChange, ...others }: NavDrawerProps) => {
   const handleLinkClick = () => {
-    onOpenChange(false);
-  };
+    onOpenChange(false)
+  }
 
   return (
     <Drawer onOpenChange={onOpenChange} {...others}>
       <Drawer.Portal>
         <Drawer.Overlay />
 
-        <Drawer.Content>
+        <Drawer.Content size="sm">
           <Drawer.Header>
             <VisuallyHidden>
               <Drawer.Title>Menu</Drawer.Title>
@@ -26,12 +22,12 @@ export const LayoutNavDrawer = ({
           </Drawer.Header>
 
           <Drawer.Body>
-            <LayoutNav onLinkClick={handleLinkClick} />
+            <Nav onLinkClick={handleLinkClick} />
           </Drawer.Body>
 
           <Drawer.CloseButton aria-label="Close menu" />
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer>
-  );
-};
+  )
+}

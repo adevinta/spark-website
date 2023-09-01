@@ -13,7 +13,7 @@ export const LayoutTrailingPanel = forwardRef<HTMLDivElement, LayoutTrailingPane
     <LayoutPanel
       ref={forwardedRef}
       className={cx(
-        'grow-0 sm:hidden md:hidden lg:hidden xl:hidden 2xl:flex 2xl:min-w-sz-208 3xl:min-w-sz-208',
+        'grow-0 hidden sm:hidden md:hidden lg:hidden xl:hidden 2xl:block 2xl:min-w-sz-208 3xl:min-w-sz-208',
         className,
       )}
     >

@@ -4,7 +4,5 @@ import { HTMLAttributes } from 'react'
 export type SideNavProps = HTMLAttributes<HTMLElement>
 
 export const SideNav = ({ className, ...others }: SideNavProps) => {
-  return (
-    <nav className={cx(className, "w-full h-full overflow-auto")} {...others} />
-  )
+  return <nav className={cx(className, 'h-full w-full overflow-auto')} {...others} />
 }
