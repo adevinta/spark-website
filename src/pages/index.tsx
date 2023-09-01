@@ -1,9 +1,13 @@
+import { NextSeo } from "next-seo";
+
 import { LayoutHeader } from "@/components/Layout/LayoutHeader";
 import { LayoutContainer } from "@/components/Layout/LayoutContainer";
 
 export default function IndexPage() {
   return (
     <>
+      <NextSeo title="Home" />
+
       <LayoutHeader />
 
       <LayoutContainer className="flex flex-col gap-sm my-xl" asChild>

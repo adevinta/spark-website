@@ -1,3 +1,4 @@
+import { NextSeo } from "next-seo";
 import { Doc, allDocs } from "contentlayer/generated";
 
 import { LayoutContainer } from "@/components/Layout/LayoutContainer";
@@ -12,6 +13,8 @@ interface DocDetailPageProps {
 const DocDetailPage = ({ doc }: DocDetailPageProps) => {
   return (
     <>
+      <NextSeo title={doc.title} />
+
       <LayoutHeader />
 
       <LayoutContainer className="flex gap-2xl" asChild>

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "contentlayer build",
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
@@ -31,6 +32,8 @@
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",
     "next-contentlayer": "^0.3.4",
+    "next-seo": "^6.1.0",
+    "next-sitemap": "^4.2.2",
     "next-themes": "^0.2.1",
     "postcss": "8.4.28",
     "react": "18.2.0",
