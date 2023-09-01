@@ -1,5 +1,5 @@
-import { Header } from "@/components/Header";
-import { Container } from "@/components/Container";
+import { Header } from '@/components/Header'
+import { Container } from '@/components/Container'
 
 export default function IndexPage() {
   return (
@@ -7,10 +7,10 @@ export default function IndexPage() {
       <>
         <Header />
 
-        <Container className="flex flex-col gap-sm my-xl">
+        <Container className="my-xl flex flex-col gap-sm">
           <h1 className="text-display-2">Home</h1>
         </Container>
       </>
     </>
-  );
+  )
 }

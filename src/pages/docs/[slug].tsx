@@ -1,15 +1,15 @@
-import { Container } from "src/components/Container";
-import { Doc, allDocs } from "contentlayer/generated";
-import { Header } from "@/components/Header";
-import { MDXComponent } from "@/components/MDX/MDXComponent";
-import { SideNav } from "@/components/SideNav";
-import { SideNavLink } from "@/components/SideNavLink";
-import { SideNavSeparator } from "@/components/SideNavSeparator";
-import { Fragment } from "react";
+import { Container } from 'src/components/Container'
+import { Doc, allDocs } from 'contentlayer/generated'
+import { Header } from '@/components/Header'
+import { MDXComponent } from '@/components/MDX/MDXComponent'
+import { SideNav } from '@/components/SideNav'
+import { SideNavLink } from '@/components/SideNavLink'
+import { SideNavSeparator } from '@/components/SideNavSeparator'
+import { Fragment } from 'react'
 
 interface DocDetailPageProps {
-  categories: Map<string, Array<Doc>>;
-  doc: Doc;
+  categories: Map<string, Array<Doc>>
+  doc: Doc
 }
 
 const DocDetailPage = ({ categories, doc }: DocDetailPageProps) => {
@@ -19,68 +19,63 @@ const DocDetailPage = ({ categories, doc }: DocDetailPageProps) => {
 
       <main>
         <Container className="flex gap-2xl">
-          <SideNav className="hidden md:block py-lg">
-            {Object.keys(categories).map((category) => {
-              const docs = categories[category];
+          <SideNav className="hidden py-lg md:block">
+            {Object.keys(categories).map(category => {
+              const docs = categories[category]
 
               return (
                 <Fragment key={category}>
                   <SideNavSeparator>{category}</SideNavSeparator>
 
-                  {docs.map((doc) => (
+                  {docs.map(doc => (
                     <SideNavLink key={doc.slug} href={`/docs/${doc.slug}`}>
                       {doc.title}
                     </SideNavLink>
                   ))}
                 </Fragment>
-              );
+              )
             })}
           </SideNav>
 
-          <div className="flex-1 min-w-0">
-            <MDXComponent
-              code={doc.body.code}
-              globals={{ examples: doc.examples }}
-            />
+          <div className="min-w-0 flex-1">
+            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
           </div>
         </Container>
       </main>
     </>
-  );
-};
+  )
+}
 
 export async function getStaticPaths() {
   return {
-    paths: allDocs.map((doc) => ({
+    paths: allDocs.map(doc => ({
       params: { slug: doc.slug },
     })),
     fallback: false,
-  };
+  }
 }
 
 export async function getStaticProps({ params }) {
-  const { slug } = params;
+  const { slug } = params
 
-  const doc = allDocs.find((doc) => doc.slug === slug);
+  const doc = allDocs.find(doc => doc.slug === slug)
 
   if (!doc) {
-    return { notFound: true };
+    return { notFound: true }
   }
 
   const categories = allDocs.reduce((categories, doc) => {
-    const category = doc.category;
+    const category = doc.category
 
     return {
       ...categories,
-      [category]: Array.isArray(categories[category])
-        ? [...categories[category], doc]
-        : [doc],
-    };
-  }, {});
+      [category]: Array.isArray(categories[category]) ? [...categories[category], doc] : [doc],
+    }
+  }, {})
 
   return {
     props: { categories, doc },
-  };
+  }
 }
 
-export default DocDetailPage;
+export default DocDetailPage
