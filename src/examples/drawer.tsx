@@ -27,4 +27,4 @@ export const basic = `
     </Drawer.Content>
   </Drawer.Portal>
 </Drawer>;
-`;
+`

@@ -1,15 +1,15 @@
-import "../styles/globals.css";
-import { Nunito_Sans } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import '../styles/globals.css'
+import { Nunito_Sans } from 'next/font/google'
+import { ThemeProvider } from 'next-themes'
 
 const nunito = Nunito_Sans({
-  subsets: ["latin"],
-  variable: "--font-nunito-sans",
-});
+  subsets: ['latin'],
+  variable: '--font-nunito-sans',
+})
 
-import { AppProps } from "next/app";
-import { LayoutProgress } from "@/components/Layout/LayoutProgress";
-import { DefaultSeo } from "@/components/Shared/DefaultSeo";
+import { AppProps } from "next/app"
+import { LayoutProgress } from "@/components/Layout/LayoutProgress"
+import { DefaultSeo } from "@/components/Shared/DefaultSeo"
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -23,4 +23,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default App;
+export default App

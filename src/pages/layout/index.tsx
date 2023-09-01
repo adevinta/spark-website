@@ -1,32 +1,20 @@
-import { Layout } from "@/components/Layout";
+import { Layout } from '@/components/Layout'
 
 export default function IndexPage() {
   return (
     <Layout>
       <Layout.TopBanner>
-        <div
-          className="bg-background"
-          contentEditable
-          suppressContentEditableWarning
-        >
+        <div className="bg-background" contentEditable suppressContentEditableWarning>
           top banner
         </div>
       </Layout.TopBanner>
       <Layout.Header>
-        <header
-          className="bg-background-variant"
-          contentEditable
-          suppressContentEditableWarning
-        >
+        <header className="bg-background-variant" contentEditable suppressContentEditableWarning>
           header
         </header>
       </Layout.Header>
       <Layout.Hero>
-        <div
-          className="bg-basic text-on-basic"
-          contentEditable
-          suppressContentEditableWarning
-        >
+        <div className="bg-basic text-on-basic" contentEditable suppressContentEditableWarning>
           hero
         </div>
       </Layout.Hero>
@@ -49,11 +37,7 @@ export default function IndexPage() {
         </div>
       </Layout.LeadingSidebar>
       <Layout.Content>
-        <div
-          className="bg-main text-on-main"
-          contentEditable
-          suppressContentEditableWarning
-        >
+        <div className="bg-main text-on-main" contentEditable suppressContentEditableWarning>
           content
         </div>
       </Layout.Content>
@@ -76,23 +60,15 @@ export default function IndexPage() {
         </div>
       </Layout.TrailingPanel>
       <Layout.Footer>
-        <footer
-          className="bg-background-variant"
-          contentEditable
-          suppressContentEditableWarning
-        >
+        <footer className="bg-background-variant" contentEditable suppressContentEditableWarning>
           footer
         </footer>
       </Layout.Footer>
       <Layout.BottomBanner>
-        <div
-          className="bg-background"
-          contentEditable
-          suppressContentEditableWarning
-        >
+        <div className="bg-background" contentEditable suppressContentEditableWarning>
           bottom banner
         </div>
       </Layout.BottomBanner>
     </Layout>
-  );
+  )
 }

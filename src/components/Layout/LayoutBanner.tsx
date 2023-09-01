@@ -1,10 +1,10 @@
-import { forwardRef, ReactElement } from "react";
-import { Slot } from "@spark-ui/slot";
+import { forwardRef, ReactElement } from 'react'
+import { Slot } from '@spark-ui/slot'
 
 export interface LayoutBannerProps {
-  asChild?: boolean;
-  children: ReactElement;
-  className?: string;
+  asChild?: boolean
+  children: ReactElement
+  className?: string
 }
 export const LayoutBanner = forwardRef<HTMLDivElement, LayoutBannerProps>(
   ({ children, className }, forwardedRef) => (
@@ -12,6 +12,6 @@ export const LayoutBanner = forwardRef<HTMLDivElement, LayoutBannerProps>(
       {children}
     </Slot>
   ),
-);
+)
 
-LayoutBanner.displayName = "Layout.Banner";
+LayoutBanner.displayName = 'Layout.Banner'

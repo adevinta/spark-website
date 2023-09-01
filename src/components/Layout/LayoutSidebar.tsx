@@ -1,10 +1,10 @@
-import { forwardRef, ReactElement } from "react";
-import { Slot } from "@spark-ui/slot";
+import { forwardRef, ReactElement } from 'react'
+import { Slot } from '@spark-ui/slot'
 
 export interface LayoutSidebarProps {
-  asChild?: boolean;
-  children: ReactElement;
-  className?: string;
+  asChild?: boolean
+  children: ReactElement
+  className?: string
 }
 export const LayoutSideBar = forwardRef<HTMLDivElement, LayoutSidebarProps>(
   ({ children, className }, forwardedRef) => (
@@ -12,6 +12,6 @@ export const LayoutSideBar = forwardRef<HTMLDivElement, LayoutSidebarProps>(
       {children}
     </Slot>
   ),
-);
+)
 
-LayoutSideBar.displayName = "Layout.SideBar";
+LayoutSideBar.displayName = 'Layout.SideBar'

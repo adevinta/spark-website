@@ -1,15 +1,10 @@
-import { SVGProps } from "react";
+import { SVGProps } from 'react'
 
-export type LogoProps = Omit<SVGProps<SVGSVGElement>, "children">;
+export type LogoProps = Omit<SVGProps<SVGSVGElement>, 'children'>
 
 export const LogoIcon = (props: LogoProps) => {
   return (
-    <svg
-      viewBox="0 0 196 196"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <svg viewBox="0 0 196 196" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <rect width="100%" height="100%" rx="24" fill="#fff" />
       <path
         d="M63.5275 97.4104V49.8788c0-12.1566 12.5065-20.4744 24.0153-15.9721l68.4262 26.7687-21.164 8.4102-50.8273-18.7929c-2.8653-1.0594-5.9261 1.0183-5.9261 4.0226v37.3234l-14.5241 5.7717Z"
@@ -33,5 +28,5 @@ export const LogoIcon = (props: LogoProps) => {
         </radialGradient>
       </defs>
     </svg>
-  );
-};
+  )
+}
