@@ -1,8 +1,8 @@
 import { allDocs } from 'contentlayer/generated'
-import {Fragment, HTMLAttributes} from 'react'
+import { Fragment, HTMLAttributes } from 'react'
 import { SideNavSeparator } from '../Shared/SideNavSeparator'
 import { SideNavLink } from '../Shared/SideNavLink'
-import {cx} from "class-variance-authority";
+import { cx } from 'class-variance-authority'
 export interface NavProps extends HTMLAttributes<HTMLElement> {
   onLinkClick?: () => void
 }

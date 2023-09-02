@@ -13,7 +13,7 @@ export const LayoutLeadingPanel = forwardRef<HTMLDivElement, LayoutLeadingPanelP
     <LayoutPanel
       ref={forwardedRef}
       className={cx(
-        'grow-0 hidden sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden 3xl:block 3xl:min-w-sz-208',
+        'hidden grow-0 sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden 3xl:block 3xl:min-w-sz-208',
         className,
       )}
     >

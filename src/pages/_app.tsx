@@ -8,7 +8,7 @@ const nunito = Nunito_Sans({
 })
 
 import { AppProps } from 'next/app'
-import {RouteProgress} from "@/components/Shared/RouteProgress";
+import { RouteProgress } from '@/components/Shared/RouteProgress'
 import { DefaultSeo } from '@/components/Shared/DefaultSeo'
 
 function App({ Component, pageProps }: AppProps) {
