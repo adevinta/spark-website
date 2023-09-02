@@ -18,7 +18,7 @@ export const Nav = ({ onLinkClick, className, ...others }: NavProps) => {
   }, {})
 
   return (
-    <nav className={cx('h-full overflow-auto pr-xl', className)} {...others}>
+    <nav className={cx('h-full overflow-auto', className)} {...others}>
       {Object.keys(categories).map(category => {
         const docs = categories[category]
 

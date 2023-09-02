@@ -1,8 +1,8 @@
 import { NextSeo } from 'next-seo'
 
 import { Layout } from '@/components/Layout'
-import {Header} from "@/components/Shared/Header";
-import {Footer} from "@/components/Shared/Footer";
+import { Header } from '@/components/Shared/Header'
+import { Footer } from '@/components/Shared/Footer'
 
 export default function IndexPage() {
   return (
@@ -10,13 +10,13 @@ export default function IndexPage() {
       <NextSeo title="Home" />
       <Layout>
         <Layout.Header>
-          <Header/>
+          <Header />
         </Layout.Header>
         <Layout.Content>
-          <h1 className="text-display-2">Home</h1>
+          <h1 className="px-lg text-display-2">Home</h1>
         </Layout.Content>
         <Layout.Footer>
-          <Footer/>
+          <Footer />
         </Layout.Footer>
       </Layout>
     </>

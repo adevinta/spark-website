@@ -12,7 +12,7 @@ export const LayoutContent = forwardRef<HTMLElement, LayoutContentProps>(
     <Slot
       ref={forwardedRef}
       className={cx(
-        'w-auto px-lg grow',
+        'w-screen grow',
         'sm:w-full',
         'md:w-full',
         'lg:min-w-sz-768',
