@@ -1,7 +1,3 @@
-export const CONTENT =
-  "min-w-sz-764 sm:w-full md:w-full lg:min-w-sz-764 lg:min-w-sz-764 xl:min-w-sz-764 2xl:min-w-sz-764 3xl:min-w-sz-764";
-// export const TRAILING_SIDEBAR: string = "min-w-sz-208 sm:hidden";
-
 // SM:  640 –-> full
 // MD:  764 --> full
 // LG: 1024 --> 972
