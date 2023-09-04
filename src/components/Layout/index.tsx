@@ -1,15 +1,3 @@
-/*
-Header
-Top/Bottom banner
-Nav
-Hero
-Main
-Content
-Left/Right Panel
-Left/right Sidebar
-Footer
- */
-
 import { FC } from 'react'
 
 import { Layout as Root, type LayoutProps } from './Layout'
