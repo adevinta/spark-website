@@ -23,7 +23,7 @@ const DocDetailPage = ({ doc }: DocDetailPageProps) => {
           <Nav />
         </Layout.LeadingSidebar>
         <Layout.Content>
-          <div className="px-lg">
+          <div>
             <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
           </div>
         </Layout.Content>
