@@ -2,7 +2,6 @@ import { forwardRef, ReactElement } from 'react'
 import { Slot } from '@spark-ui/slot'
 
 export interface LayoutSidebarProps {
-  asChild?: boolean
   children: ReactElement
   className?: string
 }

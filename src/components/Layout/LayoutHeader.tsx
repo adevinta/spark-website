@@ -3,7 +3,6 @@ import { cx } from 'class-variance-authority'
 import { Slot } from '@spark-ui/slot'
 
 export interface LayoutHeaderProps {
-  asChild?: boolean
   children: ReactElement
   className?: string
 }

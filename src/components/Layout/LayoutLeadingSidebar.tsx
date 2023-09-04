@@ -4,7 +4,6 @@ import { cx } from 'class-variance-authority'
 import { LayoutSideBar } from './LayoutSidebar'
 
 export interface LayoutLeadingSidebarProps {
-  asChild?: boolean
   children: ReactElement
   className?: string
 }

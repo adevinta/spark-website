@@ -4,7 +4,6 @@ import { cx } from 'class-variance-authority'
 import { LayoutPanel } from './LayoutPanel'
 
 export interface LayoutTrailingPanelProps {
-  asChild?: boolean
   children: ReactElement
   className?: string
 }
