@@ -9,13 +9,7 @@ export interface LayoutLeadingSidebarProps {
 }
 export const LayoutLeadingSidebar = forwardRef<HTMLDivElement, LayoutLeadingSidebarProps>(
   ({ children, className }, forwardedRef) => (
-    <LayoutSideBar
-      ref={forwardedRef}
-      className={cx(
-        'hidden grow-0 sm:hidden md:hidden lg:block lg:w-sz-208 xl:min-w-sz-208 2xl:min-w-sz-208 3xl:min-w-sz-208',
-        className,
-      )}
-    >
+    <LayoutSideBar ref={forwardedRef} className={cx('hidden lg:block', className)}>
       {children}
     </LayoutSideBar>
   ),

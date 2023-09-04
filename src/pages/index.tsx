@@ -13,7 +13,7 @@ export default function IndexPage() {
           <Header />
         </Layout.Header>
         <Layout.Content>
-          <h1 className="px-lg text-display-2">Home</h1>
+          <h1 className="text-display-1-expanded flex items-center justify-center">Spark-ui ✨</h1>
         </Layout.Content>
         <Layout.Footer>
           <Footer />

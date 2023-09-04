@@ -8,19 +8,7 @@ export interface LayoutHeaderProps {
 }
 export const LayoutHeader = forwardRef<HTMLElement, LayoutHeaderProps>(
   ({ children, className }, forwardedRef) => (
-    <Slot
-      ref={forwardedRef}
-      className={cx(
-        'w-full grow-0',
-        'sm:w-full',
-        'md:w-full',
-        'lg:w-[calc(1*var(--sz-208)+var(--sz-768))]',
-        'xl:w-[calc(2*var(--sz-208)+var(--sz-768))]',
-        '2xl:w-[calc(3*var(--sz-208)+var(--sz-768))]',
-        '3xl:w-[calc(4*var(--sz-208)+var(--sz-768))]',
-        className,
-      )}
-    >
+    <Slot ref={forwardedRef} className={cx('w-full grow-0 px-lg', className)}>
       {children}
     </Slot>
   ),
