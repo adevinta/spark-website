@@ -2,6 +2,9 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { marked } from "marked";
+import Slugger from "github-slugger";
+
 import * as examples from "./src/examples";
 
 export const Doc = defineDocumentType(() => ({
@@ -30,6 +33,37 @@ export const Doc = defineDocumentType(() => ({
       resolve: (doc) => {
         const slug = doc._raw.sourceFileName.replace(/\.mdx$/, "");
         return slug;
+      },
+    },
+    headings: {
+      type: "json",
+      resolve: (doc) => {
+        const slugger = new Slugger();
+        const markdownText = doc.body.raw;
+        let headings: Array<{
+          level: number;
+          text: string;
+          id: string;
+        }> = [];
+
+        if (!markdownText) {
+          return headings;
+        }
+
+        slugger.reset();
+        const tokens = marked.lexer(markdownText);
+
+        tokens.forEach((token) => {
+          if (token.type === "heading") {
+            headings.push({
+              level: token.depth,
+              text: token.text,
+              id: slugger.slug(token.text),
+            });
+          }
+        });
+
+        return headings;
       },
     },
     examples: {

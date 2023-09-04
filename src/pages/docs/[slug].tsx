@@ -4,14 +4,14 @@ import { Doc, allDocs } from "contentlayer/generated";
 import { LayoutContainer } from "@/components/Layout/LayoutContainer";
 import { LayoutHeader } from "@/components/Layout/LayoutHeader";
 import { LayoutSideNav } from "@/components/Layout/LayoutSideNav";
-import { LayoutTableOfContent } from "@/components/Layout/LayoutTableOfContent";
+import { DocsTableOfContent } from "@/components/Docs/DocsTableOfContent";
 import { MDXComponent } from "@/components/MDX/MDXComponent";
 
-interface DocDetailPageProps {
+interface DocsDetailPageProps {
   doc: Doc;
 }
 
-const DocDetailPage = ({ doc }: DocDetailPageProps) => {
+const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
   return (
     <>
       <NextSeo title={doc.title} />
@@ -29,7 +29,7 @@ const DocDetailPage = ({ doc }: DocDetailPageProps) => {
             />
           </div>
 
-          <LayoutTableOfContent key={doc.slug} />
+          <DocsTableOfContent headings={doc.headings} />
         </main>
       </LayoutContainer>
     </>
@@ -59,4 +59,4 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default DocDetailPage;
+export default DocsDetailPage;

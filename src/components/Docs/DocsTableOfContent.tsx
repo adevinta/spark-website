@@ -5,12 +5,12 @@ import {
   TableOfContentProps,
 } from "@/components/Shared/TableOfContent";
 
-export type LayoutTableOfContentProps = TableOfContentProps;
+export type DocsTableOfContentProps = TableOfContentProps;
 
-export const LayoutTableOfContent = ({
+export const DocsTableOfContent = ({
   className,
   ...others
-}: LayoutTableOfContentProps) => {
+}: DocsTableOfContentProps) => {
   return (
     <TableOfContent
       className={cx(className, [

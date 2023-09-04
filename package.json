@@ -46,6 +46,8 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^9.0.0",
+    "github-slugger": "^2.0.0",
+    "marked": "^8.0.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1"

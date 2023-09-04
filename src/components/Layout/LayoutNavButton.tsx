@@ -20,7 +20,7 @@ export const LayoutNavButton = (props: LayoutNavButtonProps) => {
 
   return (
     <>
-      <IconButton aria-label="rew" onClick={handleClick} {...props}>
+      <IconButton aria-label="Menu" onClick={handleClick} {...props}>
         <Icon>
           <BurgerMenu />
         </Icon>

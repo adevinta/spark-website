@@ -5,22 +5,31 @@ import scrollIntoView from "scroll-into-view-if-needed";
 import { useActiveAnchor } from "@/hooks/useActiveAnchor";
 import { TableOfContentLink } from "./TableOfContentLink";
 
-export type TableOfContentProps = ComponentPropsWithoutRef<"div">;
+export interface TableOfContentProps extends ComponentPropsWithoutRef<"div"> {
+  headings: Array<{
+    level: number;
+    text: string;
+    id: string;
+  }>;
+}
 
 export const TableOfContent = ({
   className,
+  headings,
   ...others
 }: TableOfContentProps) => {
-  const [headings, setHeadings] = useState<HTMLHeadingElement[]>([]);
+  const [elements, setElements] = useState<HTMLHeadingElement[]>([]);
 
   useEffect(() => {
-    setHeadings([
-      ...(document.querySelectorAll<HTMLHeadingElement>("h2, h3") || []),
-    ]);
-  }, []);
+    const elements = headings.map(({ id }) =>
+      document.getElementById(id)
+    ) as HTMLHeadingElement[];
+
+    setElements(elements);
+  }, [headings]);
 
   useEffect(() => {
-    const scrollTarget = headings.find(
+    const scrollTarget = elements.find(
       ({ id }) => id === window.top?.location.hash.replace("#", "")
     );
 
@@ -32,10 +41,10 @@ export const TableOfContent = ({
         behavior: "smooth",
       });
     }, 500);
-  }, [headings]);
+  }, [elements]);
 
-  const activeAnchor = useActiveAnchor(headings);
-  const activeIndex = headings.findIndex(
+  const activeAnchor = useActiveAnchor(elements);
+  const activeIndex = elements.findIndex(
     (heading) => heading.id === activeAnchor?.id
   );
 
@@ -47,8 +56,12 @@ export const TableOfContent = ({
       ])}
       {...others}
     >
-      {headings.map(({ tagName, id, firstChild }, index) => {
-        if (tagName !== "H2" && tagName !== "H3") return null;
+      {headings.map(({ level, id, text }, index) => {
+        if (level !== 2 && level !== 3) {
+          return null;
+        }
+
+        const tagName = `H${level}` as "H2" | "H3";
 
         return (
           <TableOfContentLink
@@ -58,7 +71,7 @@ export const TableOfContent = ({
             isPassed={index < activeIndex}
             tagName={tagName}
           >
-            {firstChild.textContent}
+            {text}
           </TableOfContentLink>
         );
       })}
