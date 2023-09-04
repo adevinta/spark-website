@@ -22,6 +22,7 @@
     "@spark-ui/icons": "^1.20.3",
     "@spark-ui/progress": "^1.0.0",
     "@spark-ui/slot": "^1.6.6",
+    "@spark-ui/tabs": "^2.0.20",
     "@spark-ui/tailwind-plugins": "^3.2.4",
     "@spark-ui/theme-utils": "^4.0.0",
     "@spark-ui/visually-hidden": "^1.1.3",
