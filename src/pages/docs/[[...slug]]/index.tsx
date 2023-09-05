@@ -1,5 +1,6 @@
 import { NextSeo } from 'next-seo'
 import { Doc, allDocs } from 'contentlayer/generated'
+import { Slot } from '@spark-ui/slot'
 
 import { LayoutContainer } from '@/components/Layout/LayoutContainer'
 import { LayoutHeader } from '@/components/Layout/LayoutHeader'
@@ -22,17 +23,16 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
 
       <LayoutHeader />
 
-      <LayoutContainer className="flex gap-2xl">
+      <LayoutContainer className="flex w-full gap-2xl lg:w-[100dvw]">
         <LayoutSideNav />
 
-        <main className="w-full flex flex-row gap-2xl">
-          <article className="min-w-0 flex-1">
+        <main className="flex w-full flex-row gap-2xl">
+          <Slot className="min-w-0 flex-1">
             <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
-          </article>
+          </Slot>
 
           <DocsTableOfContent headings={doc.headings} />
         </main>
-
       </LayoutContainer>
     </>
   )

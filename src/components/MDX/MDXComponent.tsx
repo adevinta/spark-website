@@ -26,5 +26,9 @@ export type MDXComponentProps = {
 export const MDXComponent = ({ code, globals }: MDXComponentProps) => {
   const Component = useMDXComponent(code, { ...globals, React })
 
-  return <Component components={components} />
+  return (
+    <article>
+      <Component components={components} />
+    </article>
+  )
 }
