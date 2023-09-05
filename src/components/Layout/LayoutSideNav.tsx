@@ -1,5 +1,6 @@
-import { LayoutNav, LayoutNavProps } from './LayoutNav'
 import { cx } from 'class-variance-authority'
+
+import { LayoutNav, LayoutNavProps } from './LayoutNav'
 
 export type LayoutSideNavProps = LayoutNavProps
 

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { CodeEditor } from '@/components/Shared/CodeEditor'
 
@@ -23,7 +24,7 @@ export type MDXComponentProps = {
 }
 
 export const MDXComponent = ({ code, globals }: MDXComponentProps) => {
-  const Component = useMDXComponent(code, globals)
+  const Component = useMDXComponent(code, { ...globals, React })
 
   return <Component components={components} />
 }

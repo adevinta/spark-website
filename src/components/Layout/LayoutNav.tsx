@@ -1,10 +1,11 @@
 import { allDocs } from 'contentlayer/generated'
-import { SideNav, SideNavProps } from '../Shared/SideNav'
 import { Fragment } from 'react'
-import { SideNavSeparator } from '../Shared/SideNavSeparator'
-import { SideNavLink } from '../Shared/SideNavLink'
 
-export interface LayoutNavProps extends SideNavProps {
+import { Nav, NavProps } from '@/components/Shared/Nav'
+import { NavSeparator } from '@/components/Shared/NavSeparator'
+import { NavLink } from '@/components/Shared/NavLink'
+
+export interface LayoutNavProps extends NavProps {
   onLinkClick?: () => void
 }
 
@@ -19,22 +20,24 @@ export const LayoutNav = ({ onLinkClick, ...others }: LayoutNavProps) => {
   }, {})
 
   return (
-    <SideNav {...others}>
+    <Nav {...others}>
       {Object.keys(categories).map(category => {
         const docs = categories[category]
 
         return (
           <Fragment key={category}>
-            <SideNavSeparator>{category}</SideNavSeparator>
+            <NavSeparator>{category}</NavSeparator>
 
-            {docs.map(doc => (
-              <SideNavLink key={doc.slug} href={`/docs/${doc.slug}`} onClick={onLinkClick}>
-                {doc.title}
-              </SideNavLink>
-            ))}
+            {docs
+              .filter(doc => doc.slugAsParams.split('/').length === 1)
+              .map(doc => (
+                <NavLink key={doc.url} href={doc.url} onClick={onLinkClick}>
+                  {doc.title}
+                </NavLink>
+              ))}
           </Fragment>
         )
       })}
-    </SideNav>
+    </Nav>
   )
 }

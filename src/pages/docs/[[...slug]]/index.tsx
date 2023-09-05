@@ -3,14 +3,19 @@ import { Doc, allDocs } from 'contentlayer/generated'
 
 import { LayoutContainer } from '@/components/Layout/LayoutContainer'
 import { LayoutHeader } from '@/components/Layout/LayoutHeader'
-import { MDXComponent } from '@/components/MDX/MDXComponent'
 import { LayoutSideNav } from '@/components/Layout/LayoutSideNav'
+import { DocsTableOfContent } from '@/components/Docs/DocsTableOfContent'
+import { MDXComponent } from '@/components/MDX/MDXComponent'
 
-interface DocDetailPageProps {
+interface DocsDetailPageProps {
   doc: Doc
 }
 
-const DocDetailPage = ({ doc }: DocDetailPageProps) => {
+const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
+  if (!doc) {
+    return null
+  }
+
   return (
     <>
       <NextSeo title={doc.title} />
@@ -23,6 +28,8 @@ const DocDetailPage = ({ doc }: DocDetailPageProps) => {
           <div className="min-w-0 flex-1">
             <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
           </div>
+
+          <DocsTableOfContent headings={doc.headings} />
         </main>
       </LayoutContainer>
     </>
@@ -32,7 +39,7 @@ const DocDetailPage = ({ doc }: DocDetailPageProps) => {
 export async function getStaticPaths() {
   return {
     paths: allDocs.map(doc => ({
-      params: { slug: doc.slug },
+      params: { slug: doc.slugAsParams.split('/') },
     })),
     fallback: false,
   }
@@ -41,7 +48,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params
 
-  const doc = allDocs.find(doc => doc.slug === slug)
+  const doc = allDocs.find(doc => doc.slugAsParams === slug.join('/'))
 
   if (!doc) {
     return { notFound: true }
@@ -52,4 +59,4 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export default DocDetailPage
+export default DocsDetailPage
