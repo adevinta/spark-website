@@ -23,7 +23,7 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
 
       <LayoutHeader />
 
-      <LayoutContainer className="flex min-h-[calc(100dvh-var(--sz-64))] w-full gap-2xl">
+      <LayoutContainer className="flex w-full gap-2xl min-h-[calc(100dvh-var(--sz-64))]">
         <LayoutSideNav />
 
         <main className="flex w-full flex-row gap-2xl">
