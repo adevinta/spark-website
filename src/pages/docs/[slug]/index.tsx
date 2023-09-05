@@ -6,6 +6,7 @@ import { LayoutHeader } from "@/components/Layout/LayoutHeader";
 import { MDXComponent } from "@/components/MDX/MDXComponent";
 import { LayoutSideNav } from "@/components/Layout/LayoutSideNav";
 import { ComponentMenu } from "@/components/Shared/ComponentMenu";
+import { H1 } from "@/components/MDX/H1";
 
 interface DocDetailPageProps {
   doc: Doc;
@@ -14,7 +15,7 @@ interface DocDetailPageProps {
 const DocDetailPage = ({ doc }: DocDetailPageProps) => {
   return (
     <>
-      <NextSeo title={doc.title} />
+      <NextSeo title={doc.title} description={doc.description} />
 
       <LayoutHeader />
 
@@ -23,6 +24,8 @@ const DocDetailPage = ({ doc }: DocDetailPageProps) => {
           <LayoutSideNav />
 
           <div className="flex-1 min-w-0">
+            <H1>{doc.title}</H1>
+            <p>{doc.description}</p>
             <ComponentMenu slug={doc.slug} />
             <MDXComponent
               code={doc.body.code}

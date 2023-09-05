@@ -14,8 +14,6 @@ export const ComponentMenu = ({ slug }) => {
     props: `/docs/[slug]/props`,
   };
 
-  console.log("SLUG", path, router.asPath, router.pathname);
-
   return (
     <Tabs
       defaultValue={path.usage}
@@ -26,6 +24,7 @@ export const ComponentMenu = ({ slug }) => {
       <Tabs.List>
         <Tabs.Trigger value={path.usage} asChild>
           <Link
+            className="px-xl"
             href={{
               pathname: path.usage,
               query: { slug },
@@ -36,6 +35,7 @@ export const ComponentMenu = ({ slug }) => {
         </Tabs.Trigger>
         <Tabs.Trigger value={path.props} asChild>
           <Link
+            className="px-xl"
             href={{
               pathname: path.props,
               query: { slug },

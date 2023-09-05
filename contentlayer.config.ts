@@ -50,6 +50,11 @@ export const Doc = defineDocumentType(() => ({
       description: 'The category of the doc',
       required: true,
     },
+    description: {
+      type: "string",
+      description: "The description of the doc",
+      required: true,
+    },
   },
   computedFields: {
     url: {
