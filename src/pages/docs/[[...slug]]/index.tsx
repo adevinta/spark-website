@@ -24,15 +24,15 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
 
       <LayoutContainer className="flex gap-2xl">
         <LayoutSideNav />
-        
-        <main>
-          <div className="min-w-0 flex-1">
-            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
-          </div>
 
+        <main className="w-full flex flex-row gap-2xl">
+          <article className="min-w-0 flex-1">
+            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
+          </article>
+
+          <DocsTableOfContent headings={doc.headings} />
         </main>
-        
-        <DocsTableOfContent headings={doc.headings} />
+
       </LayoutContainer>
     </>
   )

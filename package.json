@@ -9,7 +9,10 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --pretty --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prettier": "prettier --config .prettierrc.cjs --write \"{src}/**/*.{ts,tsx,js}\"",
+    "prettify": "npm run lint && npm run prettier",
+    "commit": "git-cz"
   },
   "dependencies": {
     "@spark-ui/button": "^2.1.7",
