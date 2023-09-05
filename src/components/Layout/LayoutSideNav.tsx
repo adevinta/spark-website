@@ -1,13 +1,16 @@
-import { cx } from "class-variance-authority";
+import { cx } from 'class-variance-authority'
 
-import { LayoutNav, LayoutNavProps } from "./LayoutNav";
+import { LayoutNav, LayoutNavProps } from './LayoutNav'
 
-export type LayoutSideNavProps = LayoutNavProps;
+export type LayoutSideNavProps = LayoutNavProps
 
 export const LayoutSideNav = ({ className, ...others }: LayoutSideNavProps) => {
   return (
     <LayoutNav
-      className={cx(className, 'sticky top-[64px] hidden w-sz-256 min-w-sz-256 md:block')}
+      className={cx(
+        className,
+        'sticky top-[var(--header-height)] hidden w-sz-256 min-w-sz-256 md:block',
+      )}
       {...others}
     />
   )

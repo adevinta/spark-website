@@ -1,17 +1,12 @@
-import { cx } from "class-variance-authority";
-import Link from "next/link";
-import { ComponentProps } from "react";
+import { cx } from 'class-variance-authority'
+import Link from 'next/link'
+import { ComponentProps } from 'react'
 
-import { ActiveLink } from "./ActiveLink";
+import { ActiveLink } from './ActiveLink'
 
 export interface NavLinkProps extends ComponentProps<typeof Link> {}
 
-export const NavLink = ({
-  className,
-  href,
-  children,
-  ...others
-}: NavLinkProps) => {
+export const NavLink = ({ className, href, children, ...others }: NavLinkProps) => {
   return (
     <ActiveLink href={href} {...others}>
       {({ isActive, ...props }) => (

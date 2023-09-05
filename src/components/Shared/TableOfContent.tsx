@@ -1,67 +1,56 @@
-import { cx } from "class-variance-authority";
-import { useEffect, useState, ComponentPropsWithoutRef } from "react";
-import scrollIntoView from "scroll-into-view-if-needed";
+import { cx } from 'class-variance-authority'
+import { useEffect, useState, ComponentPropsWithoutRef } from 'react'
+import scrollIntoView from 'scroll-into-view-if-needed'
 
-import { useActiveAnchor } from "@/hooks/useActiveAnchor";
-import { TableOfContentLink } from "./TableOfContentLink";
+import { useActiveAnchor } from '@/hooks/useActiveAnchor'
+import { TableOfContentLink } from './TableOfContentLink'
 
-export interface TableOfContentProps extends ComponentPropsWithoutRef<"div"> {
+export interface TableOfContentProps extends ComponentPropsWithoutRef<'div'> {
   headings: Array<{
-    level: number;
-    text: string;
-    id: string;
-  }>;
+    level: number
+    text: string
+    id: string
+  }>
 }
 
-export const TableOfContent = ({
-  className,
-  headings,
-  ...others
-}: TableOfContentProps) => {
-  const [elements, setElements] = useState<HTMLHeadingElement[]>([]);
+export const TableOfContent = ({ className, headings, ...others }: TableOfContentProps) => {
+  const [elements, setElements] = useState<HTMLHeadingElement[]>([])
 
   useEffect(() => {
-    const elements = headings.map(({ id }) =>
-      document.getElementById(id)
-    ) as HTMLHeadingElement[];
+    const elements = headings.map(({ id }) => document.getElementById(id)) as HTMLHeadingElement[]
 
-    setElements(elements);
-  }, [headings]);
+    setElements(elements)
+  }, [headings])
 
   useEffect(() => {
     const scrollTarget = elements.find(
-      ({ id }) => id === window.top?.location.hash.replace("#", "")
-    );
+      ({ id }) => id === window.top?.location.hash.replace('#', ''),
+    )
 
-    if (!scrollTarget) return;
+    if (!scrollTarget) return
 
     setTimeout(() => {
       scrollIntoView(scrollTarget, {
-        block: "start",
-        behavior: "smooth",
-      });
-    }, 500);
-  }, [elements]);
+        block: 'start',
+        behavior: 'smooth',
+      })
+    }, 500)
+  }, [elements])
 
-  const activeAnchor = useActiveAnchor(elements);
-  const activeIndex = elements.findIndex(
-    (heading) => heading.id === activeAnchor?.id
-  );
+  const activeAnchor = useActiveAnchor(elements)
+  const activeIndex = elements.findIndex(heading => heading.id === activeAnchor?.id)
 
   return (
     <div
-      className={cx(className, [
-        ["flex flex-col shrink-0 grow-0"],
-        ["overflow-y-auto"],
-      ])}
+      className={cx(className, [['flex shrink-0 grow-0 flex-col'], ['overflow-y-auto']])}
       {...others}
     >
       {headings.map(({ level, id, text }, index) => {
         if (level !== 2 && level !== 3) {
-          return null;
+          return null
         }
 
-        const tagName = `H${level}` as "H2" | "H3";
+        const tagName = `H${level}` as 'H2' | 'H3'
 
         return (
           <TableOfContentLink
@@ -73,8 +62,8 @@ export const TableOfContent = ({
           >
             {text}
           </TableOfContentLink>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}

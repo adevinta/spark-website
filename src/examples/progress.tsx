@@ -3,7 +3,7 @@ export const basic = `
   aria-label="Loading"
   value={20}
 />
-`;
+`
 
 export const label = `
 <div className="flex flex-col gap-lg">
@@ -38,7 +38,7 @@ export const label = `
     </Progress.Label>
   </Progress>
 </div>
-`;
+`
 
 export const value = `
 function Example() {
@@ -59,7 +59,7 @@ function Example() {
     </Progress>
   );
 }
-`;
+`
 
 export const max = `
 <Progress
@@ -71,7 +71,7 @@ export const max = `
     Reward
   </Progress.Label>
 </Progress>
-`;
+`
 
 export const valueLabel = `
 <Progress value={3} max={4} getValueLabel={(value, max) => ''}>
@@ -79,7 +79,7 @@ export const valueLabel = `
 
   <Progress.Label>Reward</Progress.Label>
 </Progress>;
-`;
+`
 
 export const indeterminate = `
 <Progress isIndeterminate>
@@ -88,7 +88,7 @@ export const indeterminate = `
     Loading
   </Progress.Label>
 </Progress>
-`;
+`
 
 export const visibleValue = `
 function Example() {
@@ -106,4 +106,4 @@ function Example() {
     </Progress>
   );
 }
-`;
+`
