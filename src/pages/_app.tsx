@@ -18,7 +18,7 @@ function App({ Component, pageProps }: AppProps) {
       <div className={cx(nunito.className, 'overflow-x-hidden')}>
         <DefaultSeo />
         <LayoutProgress />
-        <div className="w-screen">
+        <div className="w-full lg:w-[100dvw]">
           <Component {...pageProps} />
         </div>
       </div>

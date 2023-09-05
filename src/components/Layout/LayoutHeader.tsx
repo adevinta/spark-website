@@ -41,7 +41,7 @@ export const LayoutHeader = ({ className, ...others }: LayoutHeaderProps) => {
             </a>
           </IconButton>
 
-          <LayoutNavButton className="lg:hidden" intent="neutral" design="ghost" />
+          <LayoutNavButton className="md:hidden" intent="neutral" design="ghost" />
         </div>
       </LayoutContainer>
     </header>
