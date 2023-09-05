@@ -7,6 +7,7 @@ import { LayoutHeader } from '@/components/Layout/LayoutHeader'
 import { LayoutSideNav } from '@/components/Layout/LayoutSideNav'
 import { DocsTableOfContent } from '@/components/Docs/DocsTableOfContent'
 import { MDXComponent } from '@/components/MDX/MDXComponent'
+import { MDXComponentFooter } from '@/components/MDX/MDXComponentFooter'
 
 interface DocsDetailPageProps {
   doc: Doc
@@ -23,13 +24,18 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
 
       <LayoutHeader />
 
-      <LayoutContainer className="flex w-full gap-2xl lg:w-[100dvw]">
+      <LayoutContainer className="flex w-full gap-2xl min-h-[calc(100dvh-var(--sz-64))]">
         <LayoutSideNav />
 
         <main className="flex w-full flex-row gap-2xl">
-          <Slot className="min-w-0 flex-1">
-            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples, docgen: doc.docgen }} />
-          </Slot>
+          <div className="min-w-0 flex-1">
+            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
+            <MDXComponentFooter
+              previous={doc.prev}
+              next={doc.next}
+              filePath={doc._raw.sourceFilePath}
+            />
+          </div>
 
           <DocsTableOfContent headings={doc.headings} />
         </main>
@@ -50,11 +56,16 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params
 
-  const doc = allDocs.find(doc => doc.slugAsParams === slug.join('/'))
+  const index = allDocs.findIndex((doc, index) => doc.slugAsParams === slug.join('/'))
 
-  if (!doc) {
+  if (index === undefined) {
     return { notFound: true }
   }
+
+  const doc = Object.assign(allDocs[index], {
+    prev: allDocs[index - 1]?.slugAsParams || null,
+    next: allDocs[index + 1]?.slugAsParams || null,
+  })
 
   return {
     props: { doc },
