@@ -17,10 +17,9 @@ const DocDetailPage = ({ doc }: DocDetailPageProps) => {
 
       <LayoutHeader />
 
-      <LayoutContainer className="flex gap-2xl" asChild>
+      <LayoutContainer className="flex gap-2xl">
+        <LayoutSideNav />
         <main>
-          <LayoutSideNav />
-
           <div className="min-w-0 flex-1">
             <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
           </div>
