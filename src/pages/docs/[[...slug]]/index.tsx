@@ -12,6 +12,10 @@ interface DocsDetailPageProps {
 }
 
 const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
+  if (!doc) {
+    return null
+  }
+
   return (
     <>
       <NextSeo title={doc.title} />
@@ -36,7 +40,7 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
 export async function getStaticPaths() {
   return {
     paths: allDocs.map(doc => ({
-      params: { slug: doc.slug },
+      params: { slug: doc.slugAsParams.split('/') },
     })),
     fallback: false,
   }
@@ -45,7 +49,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params
 
-  const doc = allDocs.find(doc => doc.slug === slug)
+  const doc = allDocs.find(doc => doc.slugAsParams === slug.join('/'))
 
   if (!doc) {
     return { notFound: true }

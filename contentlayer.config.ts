@@ -54,13 +54,16 @@ export const Doc = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: post => `/${post._raw.flattenedPath}`,
+      resolve: doc => `/${doc._raw.flattenedPath}`,
     },
-    slug: {
+    slugAsParams: {
       type: 'string',
       resolve: doc => {
-        const slug = doc._raw.sourceFileName.replace(/\.mdx$/, '')
-        return slug
+        const [, ...slugs] = doc._raw.flattenedPath.split('/')
+        const slugAsParams = slugs.filter(slug => slug !== 'index.mdx').join('/')
+
+        console.log(slugAsParams)
+        return slugAsParams
       },
     },
     headings: {
@@ -105,7 +108,7 @@ export const Doc = defineDocumentType(() => ({
     examples: {
       type: 'json',
       resolve: doc => {
-        const slug = doc._raw.sourceFileName.replace(/\.mdx$/, '')
+        const [, slug] = doc._raw.flattenedPath.split('/')
         return examples[slug]
       },
     },
