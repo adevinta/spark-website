@@ -41,7 +41,7 @@ export const TableOfContent = ({ className, headings, ...others }: TableOfConten
   const activeIndex = elements.findIndex(heading => heading.id === activeAnchor?.id)
 
   return (
-    <div
+    <aside
       className={cx(className, [['flex shrink-0 grow-0 flex-col'], ['overflow-y-auto']])}
       {...others}
     >
@@ -64,6 +64,6 @@ export const TableOfContent = ({ className, headings, ...others }: TableOfConten
           </TableOfContentLink>
         )
       })}
-    </div>
+    </aside>
   )
 }
