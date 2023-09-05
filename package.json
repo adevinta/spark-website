@@ -12,16 +12,16 @@
     "typecheck": "tsc --pretty --noEmit"
   },
   "dependencies": {
-    "@spark-ui/button": "^2.1.2",
-    "@spark-ui/drawer": "^0.1.11",
-    "@spark-ui/icon": "^2.0.6",
-    "@spark-ui/icon-button": "^2.0.12",
-    "@spark-ui/icons": "^1.20.1",
-    "@spark-ui/progress": "^0.2.2",
-    "@spark-ui/slot": "^1.6.4",
-    "@spark-ui/tailwind-plugins": "^3.2.1",
-    "@spark-ui/theme-utils": "^3.0.2",
-    "@spark-ui/visually-hidden": "^1.1.2",
+    "@spark-ui/button": "^2.1.7",
+    "@spark-ui/drawer": "^0.1.16",
+    "@spark-ui/icon": "^2.0.9",
+    "@spark-ui/icon-button": "^2.0.17",
+    "@spark-ui/icons": "^1.20.3",
+    "@spark-ui/progress": "^1.0.0",
+    "@spark-ui/slot": "^1.6.6",
+    "@spark-ui/tailwind-plugins": "^3.2.4",
+    "@spark-ui/theme-utils": "^4.0.0",
+    "@spark-ui/visually-hidden": "^1.1.3",
     "@tanem/react-nprogress": "^5.0.48",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
@@ -45,8 +45,18 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/cz-commitlint": "^17.7.1",
+    "commitizen": "^4.3.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   }
 }
