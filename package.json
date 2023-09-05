@@ -8,7 +8,8 @@
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "commit": "git-cz"
   },
   "dependencies": {
     "@spark-ui/button": "^2.1.7",
@@ -44,8 +45,16 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/cz-commitlint": "^17.7.1",
+    "commitizen": "^4.3.0",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   }
 }
