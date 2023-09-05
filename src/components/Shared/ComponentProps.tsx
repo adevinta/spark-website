@@ -1,5 +1,6 @@
-import { H2 } from "@/components/MDX/H2";
-import { ReactNode } from "react";
+import { cx } from "class-variance-authority";
+import { PropsWithChildren, ReactNode } from "react";
+import { InlineCode } from '@/components/MDX/InlineCode'
 
 interface Props {
   docgen: any;
@@ -20,57 +21,105 @@ const PropData = ({
   );
 };
 
+
+const codeStyles = cx(
+  "h-fit inline-block whitespace-nowrap rounded-small bg-transparent px-none py-none", 
+  "font-mono text-small font-regular text-info"
+)
+
+const Code = ({ children }: PropsWithChildren) => {
+  return (<code className={codeStyles}>{children}</code>)
+}
+
+const PropType = ({ propType }: { propType: any }) => {
+  if (propType.name === 'enum') {
+    return propType.value.map(({ value }, i) => {
+      return (
+        <>
+          {i > 0 && ' | '}
+          <InlineCode key={i}>{value}</InlineCode>
+        </>
+      )
+    })
+  }
+  
+  return <InlineCode>{propType.name}</InlineCode>
+}
+
+const Cell = ({ children }: PropsWithChildren) => {
+  return (
+    <td className={cx(
+      "p-md text-body-2 p-2 max-w-[200px] overflow-auto whitespace-normal break-normal",
+    )}>
+      {children}
+    </td>
+  )
+}
+
+const HeadingCell = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
+  return (
+    <td className={cx(
+      "text-left p-md bg-neutral-container text-on-neutral-container font-bold text-body-2",
+      className,
+    )}>
+      {children}
+    </td>
+  )
+}
+
 export const ComponentProps = ({ docgen }) => {
-  const componentsDocgen = Object.entries(docgen) as [string, any][];
+  if (!Object.keys(docgen.props).length) {
+    return (
+      <div className="mb-3xl px-xl py-lg rounded-md bg-alert-container text-on-alert-container font-bold">
+        <p>This component does not have any props</p>
+      </div>
+    )
+  }
 
   return (
-    <div>
-      {componentsDocgen.map(([name, data]) => {
-        return (
-          <div key={name}>
-            <H2>{name}</H2>
-            <p>{data.description || "MISSING_COMPONENT_DESC"}</p>
+    <div className="overflow-x-auto overflow-y-hidden mb-3xl">
+      <table className="border-collapse border-spacing-0 w-full">
+        <thead>
+          <tr>
+            <HeadingCell className="rounded-l-md">Attribute</HeadingCell>
+            <HeadingCell>Type</HeadingCell>
+            <HeadingCell>Description</HeadingCell>
+            <HeadingCell className="rounded-r-md">Default</HeadingCell>
+          </tr>
+        </thead>
+        
+        <tbody>
+          {Object.entries(docgen.props).map((prop) => {
+            const [name, data] = prop as any;
 
-            <div>
-              {Object.entries(data.props).map((prop) => {
-                const [propName, propData] = prop as any;
+            return (
+              <tr key={name} className=" [&:nth-child(even)]:bg-background-variant">
+                {/* Attribute */}
+                <Cell>
+                  {name}{data.required ? "*" : ""}
+                </Cell>
 
-                return (
-                  <div key={propName} className="px-lg py-md rounded-md my-lg">
-                    <p className="font-bold border-b-sm border-outline mb-lg">
-                      {propName}
-                      {propData.required ? "*" : ""}
-                    </p>
+                {/* Type */}
+                <Cell >
+                  <PropType propType={data.type} />
+                </Cell>
 
-                    <div className="flex flex-col gap-md pl-lg">
-                      <PropData title="Description">
-                        {propData.description || "missing_prop_desc"}
-                      </PropData>
-
-                      <div className="flex gap-xl">
-                        <p className="font-bold">Type</p>
-                        <p className="text-info">
-                          {JSON.stringify(propData.type)}
-                        </p>
-                      </div>
-
-                      <div className="flex gap-xl">
-                        <p className="font-bold">Default</p>
-                        <p className="text-info">
-                          {propData.defaultValue?.value ||
-                            JSON.stringify(propData.defaultValue)}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-
-              {/* <p>{JSON.stringify(data)}</p> */}
-            </div>
-          </div>
-        );
-      })}
+                {/* Description */}
+                <Cell>
+                  {data.description || "-"}
+                </Cell>
+                
+                {/* Default */}
+                <Cell>
+                  <InlineCode>
+                    {data.defaultValue?.value || JSON.stringify(data.defaultValue)}
+                  </InlineCode>
+                </Cell>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   );
 };

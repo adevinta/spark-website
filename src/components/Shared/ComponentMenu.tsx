@@ -10,25 +10,22 @@ export const ComponentMenu = ({ slug }) => {
   const router = useRouter();
 
   const path = {
-    usage: "/docs/[slug]",
-    props: `/docs/[slug]/props`,
+    usage: `/docs/${slug}`,
+    props: `/docs/${slug}/props`,
   };
 
   return (
     <Tabs
       defaultValue={path.usage}
       intent="main"
-      value={router.pathname}
+      value={router.asPath}
       className="my-lg"
     >
       <Tabs.List>
         <Tabs.Trigger value={path.usage} asChild>
           <Link
             className="px-xl"
-            href={{
-              pathname: path.usage,
-              query: { slug },
-            }}
+            href={path.usage}
           >
             Usage
           </Link>
@@ -36,10 +33,7 @@ export const ComponentMenu = ({ slug }) => {
         <Tabs.Trigger value={path.props} asChild>
           <Link
             className="px-xl"
-            href={{
-              pathname: path.props,
-              query: { slug },
-            }}
+            href={path.props}
           >
             Props
           </Link>
