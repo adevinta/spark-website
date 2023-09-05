@@ -16,7 +16,7 @@ export const ActiveLink = ({ children, ...props }: ActiveLinkProps) => {
 
       const current = new URL(asPath, location.href).pathname
 
-      setIsActive(pathname === current)
+      setIsActive(current.includes(pathname))
     }
   }, [asPath, isReady, props.as, props.href])
 
