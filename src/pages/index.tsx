@@ -1,7 +1,7 @@
-import { NextSeo } from "next-seo";
+import { NextSeo } from 'next-seo'
 
-import { LayoutHeader } from "@/components/Layout/LayoutHeader";
-import { LayoutContainer } from "@/components/Layout/LayoutContainer";
+import { LayoutHeader } from '@/components/Layout/LayoutHeader'
+import { LayoutContainer } from '@/components/Layout/LayoutContainer'
 
 export default function IndexPage() {
   return (
@@ -10,11 +10,11 @@ export default function IndexPage() {
 
       <LayoutHeader />
 
-      <LayoutContainer className="flex flex-col gap-sm my-xl" asChild>
+      <LayoutContainer className="my-xl flex flex-col gap-sm" asChild>
         <main>
           <h1 className="text-display-2">Home</h1>
         </main>
       </LayoutContainer>
     </>
-  );
+  )
 }
