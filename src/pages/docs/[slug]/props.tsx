@@ -5,6 +5,9 @@ import { LayoutContainer } from "@/components/Layout/LayoutContainer";
 import { LayoutHeader } from "@/components/Layout/LayoutHeader";
 import { LayoutSideNav } from "@/components/Layout/LayoutSideNav";
 import { ComponentMenu } from "@/components/Shared/ComponentMenu";
+import { MDXComponent } from "@/components/MDX/MDXComponent";
+import { ComponentProps } from "@/components/Shared/ComponentProps";
+import { H1 } from "@/components/MDX/H1";
 
 interface DocDetailPropsPageProps {
   doc: Doc;
@@ -22,8 +25,14 @@ const DocDetailPropsPage = ({ doc }: DocDetailPropsPageProps) => {
           <LayoutSideNav />
 
           <div className="flex-1 min-w-0">
+            <H1>{doc.title}</H1>
+            <p>{doc.description}</p>
             <ComponentMenu slug={doc.slug} />
-            {JSON.stringify(doc.docgen)}
+            <ComponentProps docgen={doc.docgen} />
+            <MDXComponent
+              code={doc.body.code}
+              globals={{ examples: doc.examples, slug: doc.slug }}
+            />
           </div>
         </main>
       </LayoutContainer>
