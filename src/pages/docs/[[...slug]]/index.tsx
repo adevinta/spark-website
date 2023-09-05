@@ -26,9 +26,9 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
         <LayoutSideNav />
 
         <main className="w-full flex flex-row gap-2xl">
-          <div className="min-w-0 flex-1 lg:max-w-sz-640">
+          <article className="min-w-0 flex-1 lg:max-w-sz-640">
             <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
-          </div>
+          </article>
 
           <DocsTableOfContent headings={doc.headings} />
         </main>
