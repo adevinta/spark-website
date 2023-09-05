@@ -18,8 +18,6 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
     return null
   }
 
-  console.log(doc)
-
   return (
     <>
       <NextSeo title={doc.title} />
