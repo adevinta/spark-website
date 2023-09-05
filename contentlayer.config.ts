@@ -61,8 +61,7 @@ export const Doc = defineDocumentType(() => ({
       resolve: doc => {
         const [, ...slugs] = doc._raw.flattenedPath.split('/')
         const slugAsParams = slugs.filter(slug => slug !== 'index.mdx').join('/')
-
-        console.log(slugAsParams)
+        
         return slugAsParams
       },
     },
