@@ -16,16 +16,14 @@ export const NavLink = ({
     <ActiveLink href={href} {...others}>
       {({ isActive, ...props }) => (
         <Link
-          className={cx(
-            className,
-            "block text-body-1 p-md rounded-sm hover:bg-main/dim-5",
-            { ["text-main font-semi-bold bg-main/dim-5"]: isActive }
-          )}
+          className={cx(className, 'block rounded-sm p-md text-body-1 hover:bg-main/dim-5', {
+            ['bg-main/dim-5 font-semi-bold text-main']: isActive,
+          })}
           {...props}
         >
           {children}
         </Link>
       )}
     </ActiveLink>
-  );
-};
+  )
+}

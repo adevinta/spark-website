@@ -11,15 +11,13 @@ export interface LayoutNavProps extends NavProps {
 
 export const LayoutNav = ({ onLinkClick, ...others }: LayoutNavProps) => {
   const categories = allDocs.reduce((categories, doc) => {
-    const category = doc.category;
+    const category = doc.category
 
     return {
       ...categories,
-      [category]: Array.isArray(categories[category])
-        ? [...categories[category], doc]
-        : [doc],
-    };
-  }, {});
+      [category]: Array.isArray(categories[category]) ? [...categories[category], doc] : [doc],
+    }
+  }, {})
 
   return (
     <Nav {...others}>
@@ -40,7 +38,7 @@ export const LayoutNav = ({ onLinkClick, ...others }: LayoutNavProps) => {
               </NavLink>
             ))}
           </Fragment>
-        );
+        )
       })}
     </Nav>
   );

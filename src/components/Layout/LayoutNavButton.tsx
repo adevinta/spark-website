@@ -1,22 +1,22 @@
-import { Icon } from "@spark-ui/icon";
-import { IconButton, IconButtonProps } from "@spark-ui/icon-button";
-import { BurgerMenu } from "@spark-ui/icons";
-import { useState } from "react";
+import { Icon } from '@spark-ui/icon'
+import { IconButton, IconButtonProps } from '@spark-ui/icon-button'
+import { BurgerMenu } from '@spark-ui/icons'
+import { useState } from 'react'
 
-import { LayoutNavDrawer } from "./LayoutNavDrawer";
+import { LayoutNavDrawer } from './LayoutNavDrawer'
 
-export type LayoutNavButtonProps = Omit<IconButtonProps, "aria-label">;
+export type LayoutNavButtonProps = Omit<IconButtonProps, 'aria-label'>
 
 export const LayoutNavButton = (props: LayoutNavButtonProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
-    setIsOpen(true);
-  };
+    setIsOpen(true)
+  }
 
   const handleOpenChange = (isOpen: boolean) => {
-    setIsOpen(isOpen);
-  };
+    setIsOpen(isOpen)
+  }
 
   return (
     <>
@@ -28,5 +28,5 @@ export const LayoutNavButton = (props: LayoutNavButtonProps) => {
 
       <LayoutNavDrawer open={isOpen} onOpenChange={handleOpenChange} />
     </>
-  );
-};
+  )
+}
