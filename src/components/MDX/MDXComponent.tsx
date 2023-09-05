@@ -27,7 +27,7 @@ export const MDXComponent = ({ code, globals }: MDXComponentProps) => {
   const Component = useMDXComponent(code, { ...globals, React })
 
   return (
-    <article>
+    <article className="w-full">
       <Component components={components} />
     </article>
   )
