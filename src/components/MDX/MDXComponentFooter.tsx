@@ -1,7 +1,7 @@
 import { cx } from 'class-variance-authority'
 import { ComponentPropsWithoutRef } from 'react'
 import Link from 'next/link'
-import { repository } from '../../../package.json'
+import projectPackage from '../../../package.json'
 
 export interface MDXComponentFooterProps extends ComponentPropsWithoutRef<'div'> {
   previous: string | null
@@ -21,7 +21,7 @@ export const MDXComponentFooter = ({
       <div className="flex w-full justify-center pt-lg">
         <Link
           className="text-caption capitalize leading-6 hover:text-main"
-          href={`${repository.url.replace('.git', '')}/edit/main/src/${filePath}`}
+          href={`${projectPackage.repository.url.replace('.git', '')}/edit/main/src/${filePath}`}
           target="_blank"
         >
           Edit this page on Github.
