@@ -68,6 +68,14 @@ const HeadingCell = ({ children, className }: PropsWithChildren<{ className?: st
 }
 
 export const ComponentProps = ({ docgen }) => {
+  if (!docgen) {
+    return (
+      <div className="mb-3xl px-xl py-lg rounded-md bg-error-container text-on-error-container font-bold">
+        <p>Error: props data cannot be retrieved</p>
+      </div>
+    )
+  }
+
   if (!Object.keys(docgen.props).length) {
     return (
       <div className="mb-3xl px-xl py-lg rounded-md bg-alert-container text-on-alert-container font-bold">
