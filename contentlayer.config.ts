@@ -16,19 +16,21 @@ function readDocgenFiles() {
   )
 
   const packagesDir = fs.readdirSync(nodeModulesDir)
-  const docgenContents: Record<string, string | null> = {}
 
-  for (const packageName of packagesDir) {
-    const docgenFilePath = path.join(nodeModulesDir, packageName, 'dist/public/docgen.json')
-
-    try {
-      const content = fs.readFileSync(docgenFilePath, 'utf-8')
-      docgenContents[packageName] = JSON.parse(content)
-    } catch (err) {
-      // Handle cases where the file doesn't exist
-      docgenContents[packageName] = null
-    }
-  }
+  const docgenContents: Record<string, string | null> = ({} = packagesDir.reduce(
+    (contents, packageName) => {
+      const docgenFilePath = path.join(nodeModulesDir, packageName, 'dist/public/docgen.json')
+      try {
+        const currentContent = fs.readFileSync(docgenFilePath, 'utf-8')
+        contents[packageName] = JSON.parse(currentContent)
+      } catch (err) {
+        // Handle cases where the file doesn't exist
+        contents[packageName] = null
+      }
+      return contents
+    },
+    {},
+  ))
 
   return docgenContents
 }
@@ -55,6 +57,14 @@ export const Doc = defineDocumentType(() => ({
       description: "The description of the doc",
       required: false,
     },
+    next: {
+      type: 'string',
+      description: 'Next doc slug'
+    },
+    prev: {
+      type: 'string',
+      description: 'Previous doc slug'
+    },
   },
   computedFields: {
     url: {
@@ -66,7 +76,7 @@ export const Doc = defineDocumentType(() => ({
       resolve: doc => {
         const [, ...slugs] = doc._raw.flattenedPath.split('/')
         const slugAsParams = slugs.filter(slug => slug !== 'index.mdx').join('/')
-        
+
         return slugAsParams
       },
     },
