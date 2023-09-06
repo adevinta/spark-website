@@ -35,7 +35,6 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
               filePath={doc._raw.sourceFilePath}
             />
           </div>
-
           <DocsTableOfContent headings={doc.headings} />
         </main>
       </LayoutContainer>
@@ -61,9 +60,11 @@ export async function getStaticProps({ params }) {
     return { notFound: true }
   }
 
+  const isComponentDoc = doc => doc.slugAsParams.split('/').length === 1
+
   const doc = Object.assign(allDocs[index], {
-    prev: allDocs[index - 1]?.slugAsParams || null,
-    next: allDocs[index + 1]?.slugAsParams || null,
+    prev: allDocs.slice(0, index).reverse().find(isComponentDoc)?.slugAsParams || null,
+    next: allDocs.slice(index + 1).find(isComponentDoc)?.slugAsParams || null,
   })
 
   return {
