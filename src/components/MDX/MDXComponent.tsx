@@ -1,6 +1,8 @@
 import React from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { CodeEditor } from '@/components/Shared/CodeEditor'
+import { ComponentMenu } from "@/components/Shared/ComponentMenu";
+import { ComponentProps } from "@/components/Shared/ComponentProps";
 
 import { H1 } from './H1'
 import { H2 } from './H2'
@@ -16,7 +18,9 @@ const components = {
   code: Code,
   inlineCode: H3,
   CodeEditor,
-}
+  ComponentMenu,
+  ComponentProps,
+};
 
 export type MDXComponentProps = {
   code: string

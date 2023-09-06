@@ -33,7 +33,7 @@ function readDocgenFiles() {
   return docgenContents
 }
 
-const docgenData = {}
+const docgenData = readDocgenFiles()
 
 export const Doc = defineDocumentType(() => ({
   name: 'Doc',
@@ -49,6 +49,11 @@ export const Doc = defineDocumentType(() => ({
       type: 'string',
       description: 'The category of the doc',
       required: true,
+    },
+    description: {
+      type: "string",
+      description: "The description of the doc",
+      required: false,
     },
   },
   computedFields: {
@@ -98,10 +103,8 @@ export const Doc = defineDocumentType(() => ({
     },
     docgen: {
       type: 'json',
-      resolve: doc => {
-        const packageName = doc._raw.sourceFileName.replace(/\.mdx$/, '')
-
-        return docgenData[packageName]
+      resolve: () => {
+        return docgenData
       },
     },
     examples: {

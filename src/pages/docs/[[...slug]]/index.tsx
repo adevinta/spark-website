@@ -28,7 +28,7 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
 
         <main className="flex w-full flex-row gap-2xl">
           <Slot className="min-w-0 flex-1">
-            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
+            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples, docgen: doc.docgen }} />
           </Slot>
 
           <DocsTableOfContent headings={doc.headings} />
