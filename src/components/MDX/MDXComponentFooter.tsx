@@ -18,7 +18,7 @@ export const MDXComponentFooter = ({
 }: MDXComponentFooterProps) => {
   return (
     <>
-      <div className="flex w-full justify-center pt-lg">
+      <div className="flex w-full justify-center py-lg">
         <Link
           className="text-caption capitalize leading-6 hover:text-main"
           href={`${projectPackage.repository.url.replace('.git', '')}/edit/main/src/${filePath}`}

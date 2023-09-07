@@ -74,13 +74,13 @@ export async function getStaticProps({ params }) {
     prev:
       allDocs
         .slice(0, index)
-        .filter(doc => !isCurrent)
+        .filter(doc => !isCurrent(doc))
         .reverse()
         .find(isComponentDoc)?.slugAsParams || null,
     next:
       allDocs
         .slice(index + 1)
-        .filter(doc => !isCurrent)
+        .filter(doc => !isCurrent(doc))
         .find(isComponentDoc)?.slugAsParams || null,
   })
 
