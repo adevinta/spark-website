@@ -27,8 +27,11 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
         <LayoutSideNav />
 
         <main className="flex w-full flex-row gap-2xl">
-          <div className="relative min-w-0 flex-1 flex flex-col">
-            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples, docgen: doc.docgen }} />
+          <div className="relative flex min-w-0 flex-1 flex-col">
+            <MDXComponent
+              code={doc.body.code}
+              globals={{ examples: doc.examples, docgen: doc.docgen }}
+            />
             <MDXComponentFooter
               previous={doc.prev}
               next={doc.next}
@@ -61,10 +64,24 @@ export async function getStaticProps({ params }) {
   }
 
   const isComponentDoc = doc => doc.slugAsParams.split('/').length === 1
+  const isCurrentDoc = currentDoc => doc =>
+    doc.slugAsParams.split('/').slice(1) === currentDoc.slugAsParams.split('/').slice(1)
 
-  const doc = Object.assign(allDocs[index], {
-    prev: allDocs.slice(0, index).reverse().find(isComponentDoc)?.slugAsParams || null,
-    next: allDocs.slice(index + 1).find(isComponentDoc)?.slugAsParams || null,
+  const currentDoc = allDocs[index]
+  const isCurrent = isCurrentDoc(currentDoc)
+
+  const doc = Object.assign(currentDoc, {
+    prev:
+      allDocs
+        .slice(0, index)
+        .filter(doc => !isCurrent)
+        .reverse()
+        .find(isComponentDoc)?.slugAsParams || null,
+    next:
+      allDocs
+        .slice(index + 1)
+        .filter(doc => !isCurrent)
+        .find(isComponentDoc)?.slugAsParams || null,
   })
 
   return {
