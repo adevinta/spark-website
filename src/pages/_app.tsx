@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import { Nunito_Sans } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
-import { cx } from 'class-variance-authority'
 
 const nunito = Nunito_Sans({
   subsets: ['latin'],
@@ -15,7 +14,7 @@ import { DefaultSeo } from '@/components/Shared/DefaultSeo'
 function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
-      <div className={cx(nunito.className, "bg-background text-on-background")}>
+      <div className={nunito.className}>
         <DefaultSeo />
         <LayoutProgress />
         <Component {...pageProps} />
