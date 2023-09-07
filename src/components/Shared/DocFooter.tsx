@@ -3,19 +3,13 @@ import { ComponentPropsWithoutRef } from 'react'
 import Link from 'next/link'
 import projectPackage from '../../../package.json'
 
-export interface MDXComponentFooterProps extends ComponentPropsWithoutRef<'div'> {
+export interface DocFooterProps extends ComponentPropsWithoutRef<'div'> {
   previous: string | null
   next: string | null
   filePath: string
 }
 
-export const MDXComponentFooter = ({
-  className,
-  previous,
-  next,
-  filePath,
-  ...others
-}: MDXComponentFooterProps) => {
+export const DocFooter = ({ className, previous, next, filePath, ...others }: DocFooterProps) => {
   return (
     <>
       <div className="flex w-full justify-center py-lg">

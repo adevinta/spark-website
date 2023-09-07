@@ -6,7 +6,7 @@ import { LayoutHeader } from '@/components/Layout/LayoutHeader'
 import { LayoutSideNav } from '@/components/Layout/LayoutSideNav'
 import { DocsTableOfContent } from '@/components/Docs/DocsTableOfContent'
 import { MDXComponent } from '@/components/MDX/MDXComponent'
-import { MDXComponentFooter } from '@/components/MDX/MDXComponentFooter'
+import { DocFooter } from '@/components/Shared/DocFooter'
 
 interface DocsDetailPageProps {
   doc: Doc
@@ -32,11 +32,7 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
               code={doc.body.code}
               globals={{ examples: doc.examples, docgen: doc.docgen }}
             />
-            <MDXComponentFooter
-              previous={doc.prev}
-              next={doc.next}
-              filePath={doc._raw.sourceFilePath}
-            />
+            <DocFooter previous={doc.prev} next={doc.next} filePath={doc._raw.sourceFilePath} />
           </div>
           <DocsTableOfContent headings={doc.headings} />
         </main>
