@@ -12,7 +12,7 @@ export interface DocFooterProps extends ComponentPropsWithoutRef<'div'> {
 export const DocFooter = ({ className, previous, next, filePath, ...others }: DocFooterProps) => {
   return (
     <>
-      <div className="flex w-full justify-center py-lg">
+      <div className="flex w-full grow justify-center py-lg">
         <Link
           className="text-caption capitalize leading-6 hover:text-main"
           href={`${projectPackage.repository.url.replace('.git', '')}/edit/main/src/${filePath}`}
