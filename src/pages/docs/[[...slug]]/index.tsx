@@ -27,8 +27,8 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
         <LayoutSideNav />
 
         <main className="flex w-full flex-row gap-2xl">
-          <div className="min-w-0 flex-1">
-            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples }} />
+          <div className="relative min-w-0 flex-1 flex flex-col">
+            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples, docgen: doc.docgen }} />
             <MDXComponentFooter
               previous={doc.prev}
               next={doc.next}

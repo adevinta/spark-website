@@ -31,7 +31,7 @@ export const MDXComponent = ({ code, globals }: MDXComponentProps) => {
   const Component = useMDXComponent(code, { ...globals, React })
 
   return (
-    <article className="w-full">
+    <article className="w-full flex-1">
       <Component components={components} />
     </article>
   )

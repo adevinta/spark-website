@@ -29,7 +29,7 @@ export const MDXComponentFooter = ({
       </div>
       <div
         className={cx(
-          'mb-3xl mt-lg flex h-sz-64 flex-row justify-between border-t-sm border-neutral-container pt-lg',
+          'mb-3xl mt-lg flex h-sz-64 w-full flex-row justify-between border-t-sm border-neutral-container pt-lg',
           className,
         )}
         {...others}
