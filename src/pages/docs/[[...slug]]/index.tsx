@@ -10,9 +10,11 @@ import { DocFooter } from '@/components/Shared/DocFooter'
 
 interface DocsDetailPageProps {
   doc: Doc
+  prev: string | null
+  next: string | null
 }
 
-const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
+const DocsDetailPage = ({ doc, prev, next }: DocsDetailPageProps) => {
   if (!doc) {
     return null
   }
@@ -32,7 +34,7 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
               code={doc.body.code}
               globals={{ examples: doc.examples, docgen: doc.docgen }}
             />
-            <DocFooter previous={doc.prev} next={doc.next} filePath={doc._raw.sourceFilePath} />
+            <DocFooter previous={prev} next={next} filePath={doc._raw.sourceFilePath} />
           </div>
           <DocsTableOfContent headings={doc.headings} />
         </main>
@@ -61,27 +63,26 @@ export async function getStaticProps({ params }) {
 
   const isComponentDoc = doc => doc.slugAsParams.split('/').length === 1
   const isCurrentDoc = currentDoc => doc =>
-    doc.slugAsParams.split('/').slice(1) === currentDoc.slugAsParams.split('/').slice(1)
+    doc?.slugAsParams.split('/').slice(1) === currentDoc?.slugAsParams.split('/').slice(1)
 
   const currentDoc = allDocs[index]
   const isCurrent = isCurrentDoc(currentDoc)
 
-  const doc = Object.assign(currentDoc, {
-    prev:
-      allDocs
-        .slice(0, index)
-        .filter(doc => !isCurrent(doc))
-        .reverse()
-        .find(isComponentDoc)?.slugAsParams || null,
-    next:
-      allDocs
-        .slice(index + 1)
-        .filter(doc => !isCurrent(doc))
-        .find(isComponentDoc)?.slugAsParams || null,
-  })
-
   return {
-    props: { doc },
+    props: {
+      doc: currentDoc,
+      prev:
+        allDocs
+          .slice(0, index)
+          .filter(doc => !isCurrent(doc))
+          .reverse()
+          .find(isComponentDoc)?.slugAsParams || null,
+      next:
+        allDocs
+          .slice(index + 1)
+          .filter(doc => !isCurrent(doc))
+          .find(isComponentDoc)?.slugAsParams || null,
+    },
   }
 }
 

@@ -53,17 +53,9 @@ export const Doc = defineDocumentType(() => ({
       required: true,
     },
     description: {
-      type: "string",
-      description: "The description of the doc",
+      type: 'string',
+      description: 'The description of the doc',
       required: false,
-    },
-    next: {
-      type: 'string',
-      description: 'Next doc slug'
-    },
-    prev: {
-      type: 'string',
-      description: 'Previous doc slug'
     },
   },
   computedFields: {
