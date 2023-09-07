@@ -11,6 +11,10 @@ export const ModeIconButton = (props: ModeIconButtonProps) => {
   const { theme, setTheme } = useTheme()
 
   useEffect(() => {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    if (prefersDark) {
+      setTheme(prefersDark ? 'dark' : 'light')
+    }
     setIsMounted(true)
   }, [])
 
