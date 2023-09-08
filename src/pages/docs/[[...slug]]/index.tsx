@@ -1,18 +1,20 @@
 import { NextSeo } from 'next-seo'
 import { Doc, allDocs } from 'contentlayer/generated'
-import { Slot } from '@spark-ui/slot'
 
 import { LayoutContainer } from '@/components/Layout/LayoutContainer'
 import { LayoutHeader } from '@/components/Layout/LayoutHeader'
 import { LayoutSideNav } from '@/components/Layout/LayoutSideNav'
 import { DocsTableOfContent } from '@/components/Docs/DocsTableOfContent'
 import { MDXComponent } from '@/components/MDX/MDXComponent'
+import { DocFooter } from '@/components/Shared/DocFooter'
 
 interface DocsDetailPageProps {
   doc: Doc
+  prev: string | null
+  next: string | null
 }
 
-const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
+const DocsDetailPage = ({ doc, prev, next }: DocsDetailPageProps) => {
   if (!doc) {
     return null
   }
@@ -23,14 +25,17 @@ const DocsDetailPage = ({ doc }: DocsDetailPageProps) => {
 
       <LayoutHeader />
 
-      <LayoutContainer className="flex w-full gap-2xl lg:w-[100dvw]">
+      <LayoutContainer className="flex min-h-[calc(100dvh-var(--sz-64))] w-full gap-2xl">
         <LayoutSideNav />
 
         <main className="flex w-full flex-row gap-2xl">
-          <Slot className="min-w-0 flex-1">
-            <MDXComponent code={doc.body.code} globals={{ examples: doc.examples, docgen: doc.docgen }} />
-          </Slot>
-
+          <div className="relative flex min-w-0 flex-1 flex-col">
+            <MDXComponent
+              code={doc.body.code}
+              globals={{ examples: doc.examples, docgen: doc.docgen }}
+            />
+            <DocFooter previous={prev} next={next} filePath={doc._raw.sourceFilePath} />
+          </div>
           <DocsTableOfContent headings={doc.headings} />
         </main>
       </LayoutContainer>
@@ -50,14 +55,34 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params
 
-  const doc = allDocs.find(doc => doc.slugAsParams === slug.join('/'))
+  const index = allDocs.findIndex((doc, index) => doc.slugAsParams === slug.join('/'))
 
-  if (!doc) {
+  if (index === undefined) {
     return { notFound: true }
   }
 
+  const isComponentDoc = doc => doc.slugAsParams.split('/').length === 1
+  const isCurrentDoc = currentDoc => doc =>
+    doc?.slugAsParams.split('/').slice(1) === currentDoc?.slugAsParams.split('/').slice(1)
+
+  const currentDoc = allDocs[index]
+  const isCurrent = isCurrentDoc(currentDoc)
+
   return {
-    props: { doc },
+    props: {
+      doc: currentDoc,
+      prev:
+        allDocs
+          .slice(0, index)
+          .filter(doc => !isCurrent(doc))
+          .reverse()
+          .find(isComponentDoc)?.slugAsParams || null,
+      next:
+        allDocs
+          .slice(index + 1)
+          .filter(doc => !isCurrent(doc))
+          .find(isComponentDoc)?.slugAsParams || null,
+    },
   }
 }
 

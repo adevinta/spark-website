@@ -23,7 +23,7 @@ const PropData = ({
 
 
 const codeStyles = cx(
-  "h-fit inline-block whitespace-nowrap rounded-small bg-transparent px-none py-none", 
+  "h-fit inline-block whitespace-nowrap rounded-small bg-transparent px-none py-none",
   "font-mono text-small font-regular text-info"
 )
 
@@ -42,7 +42,7 @@ const PropType = ({ propType }: { propType: any }) => {
       )
     })
   }
-  
+
   return <InlineCode>{propType.name}</InlineCode>
 }
 
@@ -75,7 +75,6 @@ export const ComponentProps = ({ docgen }) => {
       </div>
     )
   }
-
   if (!Object.keys(docgen.props).length) {
     return (
       <div className="mb-3xl px-xl py-lg rounded-md bg-alert-container text-on-alert-container font-bold">
@@ -95,7 +94,7 @@ export const ComponentProps = ({ docgen }) => {
             <HeadingCell className="rounded-r-md">Default</HeadingCell>
           </tr>
         </thead>
-        
+
         <tbody>
           {Object.entries(docgen.props).map((prop) => {
             const [name, data] = prop as any;
@@ -116,7 +115,7 @@ export const ComponentProps = ({ docgen }) => {
                 <Cell>
                   {data.description || "-"}
                 </Cell>
-                
+
                 {/* Default */}
                 <Cell>
                   <InlineCode>
