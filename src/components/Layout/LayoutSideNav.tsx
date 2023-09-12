@@ -8,8 +8,8 @@ export const LayoutSideNav = ({ className, ...others }: LayoutSideNavProps) => {
   return (
     <LayoutNav
       className={cx(
+        'sticky top-[var(--sz-64)] hidden w-sz-256 min-w-sz-256 pb-[var(--sz-64)] md:block h-[calc(100vh-var(--sz-64))]',
         className,
-        'sticky top-[var(--sz-64)] hidden w-sz-256 min-w-sz-256 pb-[var(--sz-64)] md:block',
       )}
       {...others}
     />
