@@ -1,34 +1,27 @@
-import { cx } from "class-variance-authority";
-import { PropsWithChildren, ReactNode } from "react";
+import { cx } from 'class-variance-authority'
+import { PropsWithChildren, ReactNode } from 'react'
 import { InlineCode } from '@/components/MDX/InlineCode'
 
 interface Props {
-  docgen: any;
+  docgen: any
 }
 
-const PropData = ({
-  title,
-  children,
-}: {
-  title: string;
-  children: ReactNode;
-}) => {
+const PropData = ({ title, children }: { title: string; children: ReactNode }) => {
   return (
     <div className="flex gap-xl">
       <p className="font-bold">{title}</p>
       <p>{children}</p>
     </div>
-  );
-};
-
+  )
+}
 
 const codeStyles = cx(
-  "h-fit inline-block whitespace-nowrap rounded-small bg-transparent px-none py-none",
-  "font-mono text-small font-regular text-info"
+  'h-fit inline-block whitespace-nowrap rounded-small bg-transparent px-none py-none',
+  'font-mono text-small font-regular text-info',
 )
 
 const Code = ({ children }: PropsWithChildren) => {
-  return (<code className={codeStyles}>{children}</code>)
+  return <code className={codeStyles}>{children}</code>
 }
 
 const PropType = ({ propType }: { propType: any }) => {
@@ -48,9 +41,11 @@ const PropType = ({ propType }: { propType: any }) => {
 
 const Cell = ({ children }: PropsWithChildren) => {
   return (
-    <td className={cx(
-      "p-md text-body-2 p-2 max-w-[200px] overflow-auto whitespace-normal break-normal",
-    )}>
+    <td
+      className={cx(
+        'p-2 max-w-[200px] overflow-auto whitespace-normal break-normal p-md text-body-2',
+      )}
+    >
       {children}
     </td>
   )
@@ -58,10 +53,12 @@ const Cell = ({ children }: PropsWithChildren) => {
 
 const HeadingCell = ({ children, className }: PropsWithChildren<{ className?: string }>) => {
   return (
-    <td className={cx(
-      "text-left p-md bg-neutral-container text-on-neutral-container font-bold text-body-2",
-      className,
-    )}>
+    <td
+      className={cx(
+        'bg-neutral-container p-md text-left text-body-2 font-bold text-on-neutral-container',
+        className,
+      )}
+    >
       {children}
     </td>
   )
@@ -70,22 +67,22 @@ const HeadingCell = ({ children, className }: PropsWithChildren<{ className?: st
 export const ComponentProps = ({ docgen }) => {
   if (!docgen) {
     return (
-      <div className="mb-3xl px-xl py-lg rounded-md bg-error-container text-on-error-container font-bold">
+      <div className="mb-3xl rounded-md bg-error-container px-xl py-lg font-bold text-on-error-container">
         <p>Error: props data cannot be retrieved</p>
       </div>
     )
   }
   if (!Object.keys(docgen.props).length) {
     return (
-      <div className="mb-3xl px-xl py-lg rounded-md bg-alert-container text-on-alert-container font-bold">
+      <div className="mb-3xl rounded-md bg-alert-container px-xl py-lg font-bold text-on-alert-container">
         <p>This component does not have any props</p>
       </div>
     )
   }
 
   return (
-    <div className="overflow-x-auto overflow-y-hidden mb-3xl">
-      <table className="border-collapse border-spacing-0 w-full">
+    <div className="mb-3xl overflow-x-auto overflow-y-hidden">
+      <table className="border-spacing-0 w-full border-collapse">
         <thead>
           <tr>
             <HeadingCell className="rounded-l-md">Attribute</HeadingCell>
@@ -96,25 +93,24 @@ export const ComponentProps = ({ docgen }) => {
         </thead>
 
         <tbody>
-          {Object.entries(docgen.props).map((prop) => {
-            const [name, data] = prop as any;
+          {Object.entries(docgen.props).map(prop => {
+            const [name, data] = prop as any
 
             return (
               <tr key={name} className=" [&:nth-child(even)]:bg-background-variant">
                 {/* Attribute */}
                 <Cell>
-                  {name}{data.required ? "*" : ""}
+                  {name}
+                  {data.required ? '*' : ''}
                 </Cell>
 
                 {/* Type */}
-                <Cell >
+                <Cell>
                   <PropType propType={data.type} />
                 </Cell>
 
                 {/* Description */}
-                <Cell>
-                  {data.description || "-"}
-                </Cell>
+                <Cell>{data.description || '-'}</Cell>
 
                 {/* Default */}
                 <Cell>
@@ -128,5 +124,5 @@ export const ComponentProps = ({ docgen }) => {
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}

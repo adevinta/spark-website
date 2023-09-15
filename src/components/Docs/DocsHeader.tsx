@@ -8,18 +8,18 @@ import { Npm } from '@/icons/Npm'
 import { GitHub } from '@/icons/GitHub'
 import { Bug } from '@/icons/Bug'
 import { WarningFill } from '@spark-ui/icons'
-import {ComponentPropsWithoutRef} from "react";
+import { ComponentPropsWithoutRef } from 'react'
 
 export interface DocsHeaderProps extends ComponentPropsWithoutRef<'header'> {
-  title?: string,
-  name?: string,
-  category?: string,
-  license?: string,
-  description?: string,
-  keywords?: string,
-  packageUrl?: string,
-  version?: string,
-  bugReportUrl?: string,
+  title?: string
+  name?: string
+  category?: string
+  license?: string
+  description?: string
+  keywords?: string
+  packageUrl?: string
+  version?: string
+  bugReportUrl?: string
 }
 export const DocsHeader = ({
   title,
