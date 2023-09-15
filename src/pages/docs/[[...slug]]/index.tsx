@@ -6,15 +6,42 @@ import { LayoutHeader } from '@/components/Layout/LayoutHeader'
 import { LayoutSideNav } from '@/components/Layout/LayoutSideNav'
 import { DocsTableOfContent } from '@/components/Docs/DocsTableOfContent'
 import { MDXComponent } from '@/components/MDX/MDXComponent'
-import { DocFooter } from '@/components/Shared/DocFooter'
+import { DocsFooter } from '@/components/Docs/DocsFooter'
+import { getLocalData } from '@/utils/getLocalData'
+import { DocsHeader } from '@/components/Docs/DocsHeader'
+
+import projectPackage from '../../../../package.json'
 
 interface DocsDetailPageProps {
   doc: Doc
   prev: string | null
   next: string | null
+  title: string | null
+  name: string | null
+  category: string | null
+  license: string | null
+  description: string | null
+  version: string | null
+  keywords: string | null
+  repository: string | null
+  packageUrl: string | null
+  bugReportUrl: string | null
 }
 
-const DocsDetailPage = ({ doc, prev, next }: DocsDetailPageProps) => {
+const DocsDetailPage = ({
+  doc,
+  prev,
+  next,
+  title,
+  name,
+  category,
+  license,
+  description,
+  keywords,
+  version,
+  packageUrl,
+  bugReportUrl,
+}: DocsDetailPageProps) => {
   if (!doc) {
     return null
   }
@@ -25,18 +52,36 @@ const DocsDetailPage = ({ doc, prev, next }: DocsDetailPageProps) => {
 
       <LayoutHeader />
 
-      <LayoutContainer className="flex min-h-[calc(100dvh-var(--sz-64))] w-full gap-2xl">
+      <LayoutContainer className="flex min-h-[calc(100dvh-var(--sz-64))] w-full">
         <LayoutSideNav />
 
-        <main className="flex w-full flex-row gap-2xl">
-          <div className="relative flex min-w-0 flex-1 flex-col">
-            <MDXComponent
-              code={doc.body.code}
-              globals={{ examples: doc.examples, docgen: doc.docgen }}
+        <main className="flex w-full flex-row">
+          <article className="flex w-full flex-col">
+            <DocsHeader
+              {...{
+                title,
+                version,
+                name,
+                category,
+                license,
+                description,
+                keywords,
+                packageUrl,
+                bugReportUrl,
+              }}
+              className="-mx-lg px-lg pb-lg md:mx-none"
             />
-            <DocFooter previous={prev} next={next} filePath={doc._raw.sourceFilePath} />
-          </div>
-          <DocsTableOfContent headings={doc.headings} />
+            <div className="flex w-full grow flex-row gap-lg">
+              <div className="relative flex min-w-0 flex-1 flex-col md:pl-lg">
+                <MDXComponent
+                  code={doc.body.code}
+                  globals={{ examples: doc.examples, docgen: doc.docgen }}
+                />
+                <DocsFooter previous={prev} next={next} docUrl={bugReportUrl} />
+              </div>
+              <DocsTableOfContent headings={doc.headings} />
+            </div>
+          </article>
         </main>
       </LayoutContainer>
     </>
@@ -66,6 +111,28 @@ export async function getStaticProps({ params }) {
     doc?.slugAsParams.split('/').slice(1) === currentDoc?.slugAsParams.split('/').slice(1)
 
   const currentDoc = allDocs[index]
+  let packageJSON: {
+    config?: {
+      title?: string
+      category?: string
+    }
+    name?: string
+    license?: string
+    description?: string
+    keywords?: string[]
+    version?: string
+    bugs?: {
+      url?: string
+    }
+    repository?: {
+      type: string
+      url?: string
+      directory?: string
+    }
+  } = {}
+  if (currentDoc.package) {
+    packageJSON = await getLocalData(`node_modules/${currentDoc.package}/package.json`)
+  }
   const isCurrent = isCurrentDoc(currentDoc)
 
   return {
@@ -82,6 +149,20 @@ export async function getStaticProps({ params }) {
           .slice(index + 1)
           .filter(doc => !isCurrent(doc))
           .find(isComponentDoc)?.slugAsParams || null,
+      name: packageJSON.name,
+      title: packageJSON.config?.title,
+      category: packageJSON.config?.category,
+      license: packageJSON.license,
+      description: packageJSON.description,
+      keywords: packageJSON.keywords,
+      version: packageJSON.version,
+      packageUrl: `${packageJSON.repository.url.replace('.git', '')}/tree/main/${
+        packageJSON.repository.directory
+      }`,
+      docUrl: `${projectPackage.repository.url.replace('.git', '')}/edit/main/src/${
+        currentDoc._raw.sourceFilePath
+      }`,
+      bugReportUrl: `${packageJSON.bugs.url}`,
     },
   }
 }

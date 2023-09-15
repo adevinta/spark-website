@@ -10,7 +10,7 @@ export const DocsTableOfContent = ({ className, ...others }: DocsTableOfContentP
       className={cx(className, [
         'hidden xl:block',
         'sticky top-[var(--header-height)]',
-        'max-h-[calc(100vh-var(--header-height))] w-sz-256 min-w-sz-256 pt-lg',
+        'max-h-[calc(100vh-var(--header-height))] w-sz-256 min-w-sz-256 pt-3xl mt-2xl',
       ])}
       {...others}
     />
