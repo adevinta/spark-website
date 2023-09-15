@@ -1,4 +1,5 @@
 const { sparkConfig } = require('@spark-ui/tailwind-plugins')
+const containerQueries = require('@tailwindcss/container-queries')
 const { defaultTheme, defaultThemeDark } = require('@spark-ui/theme-utils')
 
 module.exports = {
@@ -20,6 +21,7 @@ module.exports = {
     },
   },
   plugins: [
+    containerQueries,
     ...sparkConfig({
       htmlFontSize: 16,
       themes: {

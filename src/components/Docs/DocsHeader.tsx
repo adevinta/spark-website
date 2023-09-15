@@ -34,26 +34,40 @@ export const DocsHeader = ({
   bugReportUrl,
 }: DocsHeaderProps) => {
   return (
-    <header className={cx('bg-background-variant', className)}>
-      <H1 className="font-bold first-letter:uppercase">{title}</H1>
-      <P className="font-bold first-letter:uppercase">{description}</P>
+    <header className={cx('@container/docs-header flex flex-wrap', className)}>
+      <div
+        className={cx(
+          'w-full bg-gradient-to-r from-background-variant from-80% to-transparent px-lg pb-lg',
+          '@[512px]/docs-header:w-[calc(100%-var(--toc-width))]',
+        )}
+      >
+        <H1 className="font-bold first-letter:uppercase">{title}</H1>
+        <P className="font-bold first-letter:uppercase">{description}</P>
+      </div>
 
-      <li className="flex w-full flex-col gap-md">
-        <div className="flex w-full flex-row items-center gap-md">
-          <span className="w-sz-64 font-semi-bold">Name</span>
-          <span className="font-mono text-body-2">{name}</span>
+      <li
+        className={cx(
+          ' flex w-full flex-col justify-between bg-info-container text-on-info-container shadow-sm',
+          '@[512px]/docs-header:w-[--toc-width]',
+        )}
+      >
+        <div className="flex flex-col gap-sm px-lg py-md">
+          <div className="flex w-full items-baseline gap-sm">
+            <span className="w-sz-64 font-bold">Name</span>
+            <p className="font-mono text-body-2">{name}</p>
+          </div>
+          <div className="flex w-full items-center gap-sm">
+            <span className="w-sz-64 font-bold">Version</span>
+            <Tag intent="main" design="outlined">
+              {version}
+            </Tag>
+          </div>
+          <div className="flex w-full items-center gap-sm">
+            <span className="w-sz-64 font-bold">License</span>
+            <span className="capitalise font-mono text-body-2">{license}</span>
+          </div>
         </div>
-        <div className="flex w-full flex-row items-center gap-md">
-          <span className="w-sz-64 font-semi-bold">Version</span>
-          <Tag intent="main" design="outlined">
-            {version}
-          </Tag>
-        </div>
-        <div className="flex w-full flex-row items-center gap-md">
-          <span className="w-sz-64 font-semi-bold">License</span>
-          <span className="capitalise font-mono text-body-2">{license}</span>
-        </div>
-        <span className="flex flex-row gap-md pt-md">
+        <span className={cx('flex justify-start gap-md px-lg py-md')}>
           <a
             className="text-[#CB3837]"
             href={`https://www.npmjs.com/package/${name}/v/${version}`}
@@ -63,7 +77,7 @@ export const DocsHeader = ({
               <Npm />
             </Icon>
           </a>
-          <a className="text-on-background" href={packageUrl} target="_blank">
+          <a className="text-on-surface" href={packageUrl} target="_blank">
             <Icon size="md" label="github">
               <GitHub />
             </Icon>

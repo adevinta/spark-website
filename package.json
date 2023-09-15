@@ -72,6 +72,7 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^17.7.0",
     "@commitlint/cz-commitlint": "^17.7.1",
+    "@tailwindcss/container-queries": "^0.1.1",
     "commitizen": "^4.3.0",
     "eslint-config-prettier": "^9.0.0",
     "github-slugger": "^2.0.0",

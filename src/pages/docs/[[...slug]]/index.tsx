@@ -69,7 +69,7 @@ const DocsDetailPage = ({
                 packageUrl,
                 bugReportUrl,
               }}
-              className="-mx-lg px-lg pb-lg md:mx-none"
+              className="-mx-lg md:mx-none"
             />
             <div className="flex w-full grow flex-row gap-lg">
               <div className="relative flex min-w-0 flex-1 flex-col md:pl-lg">
