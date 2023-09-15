@@ -22,7 +22,7 @@ export const LayoutNavDrawer = ({ onOpenChange, ...others }: LayoutNavDrawerProp
           </Drawer.Header>
 
           <Drawer.Body>
-            <LayoutNav onLinkClick={handleLinkClick} className="h-screen"/>
+            <LayoutNav onLinkClick={handleLinkClick} className="h-screen" />
           </Drawer.Body>
 
           <Drawer.CloseButton aria-label="Close menu" />

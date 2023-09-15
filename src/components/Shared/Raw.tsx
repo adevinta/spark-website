@@ -1,1 +1,1 @@
-export const Raw = ({ children }: {children: string}) => <>{children}</>
+export const Raw = ({ children }: { children: string }) => <>{children}</>
