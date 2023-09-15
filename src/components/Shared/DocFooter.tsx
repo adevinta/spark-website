@@ -6,16 +6,16 @@ import projectPackage from '../../../package.json'
 export interface DocFooterProps extends ComponentPropsWithoutRef<'div'> {
   previous: string | null
   next: string | null
-  filePath: string
+  docUrl: string
 }
 
-export const DocFooter = ({ className, previous, next, filePath, ...others }: DocFooterProps) => {
+export const DocFooter = ({ className, previous, next, docUrl, ...others }: DocFooterProps) => {
   return (
     <>
       <div className="flex w-full grow justify-center py-lg">
         <Link
           className="text-caption capitalize leading-6 hover:text-main"
-          href={`${projectPackage.repository.url.replace('.git', '')}/edit/main/src/${filePath}`}
+          href={docUrl}
           target="_blank"
         >
           Edit this page on Github.

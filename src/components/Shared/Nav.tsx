@@ -4,5 +4,5 @@ import { ComponentPropsWithoutRef } from 'react'
 export type NavProps = ComponentPropsWithoutRef<'nav'>
 
 export const Nav = ({ className, ...others }: NavProps) => {
-  return <nav className={cx('h-screen w-full overflow-y-scroll', className)} {...others} />
+  return <nav className={cx('w-full overflow-y-scroll', className)} {...others} />
 }
