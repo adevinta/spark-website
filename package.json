@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "prettier": "prettier --config .prettierrc.cjs --write \"{src}/**/*.{ts,tsx,js}\"",
+    "prettier": "prettier --write \"src/**/*.{ts,tsx,js}\"",
     "prettify": "npm run lint && npm run prettier",
     "commit": "git-cz"
   },
