@@ -4,7 +4,6 @@ import { CodeEditor } from '@/components/Shared/CodeEditor'
 import { ComponentMenu } from '@/components/Shared/ComponentMenu'
 import { ComponentProps } from '@/components/Shared/ComponentProps'
 import { Raw } from '@/components/Shared/Raw'
-import { DocHeader } from '@/components/Shared/DocHeader'
 import { cx } from 'class-variance-authority'
 
 import { H1 } from './H1'
@@ -24,7 +23,6 @@ const components = {
   ComponentMenu,
   ComponentProps,
   Raw,
-  DocHeader,
 }
 
 export type MDXComponentProps = {

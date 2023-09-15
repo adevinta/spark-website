@@ -6,9 +6,9 @@ import { LayoutHeader } from '@/components/Layout/LayoutHeader'
 import { LayoutSideNav } from '@/components/Layout/LayoutSideNav'
 import { DocsTableOfContent } from '@/components/Docs/DocsTableOfContent'
 import { MDXComponent } from '@/components/MDX/MDXComponent'
-import { DocFooter } from '@/components/Shared/DocFooter'
+import { DocsFooter } from '@/components/Docs/DocsFooter'
 import { getLocalData } from '@/utils/getLocalData'
-import { DocHeader } from '@/components/Shared/DocHeader'
+import { DocsHeader } from '@/components/Docs/DocsHeader'
 
 import projectPackage from '../../../../package.json'
 
@@ -52,12 +52,12 @@ const DocsDetailPage = ({
 
       <LayoutHeader />
 
-      <LayoutContainer className="flex min-h-[calc(100dvh-var(--sz-64))] w-full gap-lg">
+      <LayoutContainer className="flex min-h-[calc(100dvh-var(--sz-64))] w-full">
         <LayoutSideNav />
 
         <main className="flex w-full flex-row">
           <article className="flex w-full flex-col">
-            <DocHeader
+            <DocsHeader
               {...{
                 title,
                 version,
@@ -77,7 +77,7 @@ const DocsDetailPage = ({
                   code={doc.body.code}
                   globals={{ examples: doc.examples, docgen: doc.docgen }}
                 />
-                <DocFooter previous={prev} next={next} docUrl={bugReportUrl} />
+                <DocsFooter previous={prev} next={next} docUrl={bugReportUrl} />
               </div>
               <DocsTableOfContent headings={doc.headings} />
             </div>

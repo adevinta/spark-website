@@ -1,15 +1,14 @@
 import { cx } from 'class-variance-authority'
 import { ComponentPropsWithoutRef } from 'react'
 import Link from 'next/link'
-import projectPackage from '../../../package.json'
 
-export interface DocFooterProps extends ComponentPropsWithoutRef<'div'> {
+export interface DocsFooterProps extends ComponentPropsWithoutRef<'div'> {
   previous: string | null
   next: string | null
   docUrl: string
 }
 
-export const DocFooter = ({ className, previous, next, docUrl, ...others }: DocFooterProps) => {
+export const DocsFooter = ({ className, previous, next, docUrl, ...others }: DocsFooterProps) => {
   return (
     <>
       <div className="flex w-full grow justify-center py-lg">
