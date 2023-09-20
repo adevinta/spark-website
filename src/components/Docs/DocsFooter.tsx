@@ -9,16 +9,20 @@ export interface DocsFooterProps extends ComponentPropsWithoutRef<'div'> {
 }
 
 export const DocsFooter = ({ className, previous, next, docUrl, ...others }: DocsFooterProps) => {
+  const [previousCategory, previousName] = (previous || '').split('/')
+  const [nextCategory, nextsName] = (next || '').split('/')
   return (
     <>
       <div className="flex w-full grow justify-center py-lg">
-        <Link
-          className="text-caption capitalize leading-6 hover:text-main"
-          href={docUrl}
-          target="_blank"
-        >
-          Edit this page on Github.
-        </Link>
+        <div>
+          <Link
+            className="text-caption capitalize leading-6 hover:text-main"
+            href={docUrl}
+            target="_blank"
+          >
+            Edit this page on Github.
+          </Link>
+        </div>
       </div>
       <div
         className={cx(
@@ -27,30 +31,26 @@ export const DocsFooter = ({ className, previous, next, docUrl, ...others }: Doc
         )}
         {...others}
       >
-        <div className="flex w-2/4 flex-col items-start justify-between">
+        <div>
           {previous && (
-            <>
+            <Link
+              className="flex flex-col items-start justify-between pr-3xl text-subhead capitalize leading-6 hover:text-main"
+              href={`/docs/${previousCategory}/${previousName}`}
+            >
               <span className="text-caption">Previous</span>
-              <Link
-                className="text-subhead capitalize leading-6 hover:text-main"
-                href={`/docs/${previous}`}
-              >
-                {previous}
-              </Link>
-            </>
+              <span>{previousName}</span>
+            </Link>
           )}
         </div>
-        <div className="flex w-2/4 flex-col items-end">
+        <div className="">
           {next && (
-            <>
+            <Link
+              className="flex flex-col items-end justify-between pl-3xl text-subhead capitalize leading-6 hover:text-main"
+              href={`/docs/${nextCategory}/${nextsName}`}
+            >
               <span className="text-caption">Next</span>
-              <Link
-                className="text-subhead capitalize leading-6 hover:text-main"
-                href={`/docs/${next}`}
-              >
-                {next}
-              </Link>
-            </>
+              <span>{nextsName}</span>
+            </Link>
           )}
         </div>
       </div>

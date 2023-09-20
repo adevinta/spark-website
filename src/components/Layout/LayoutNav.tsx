@@ -27,9 +27,8 @@ export const LayoutNav = ({ onLinkClick, ...others }: LayoutNavProps) => {
         return (
           <Fragment key={category}>
             <NavSeparator>{category}</NavSeparator>
-
             {docs
-              .filter(doc => doc.slugAsParams.split('/').length === 1)
+              .filter(doc => doc.slugAsParams.split('/').length === 2)
               .map(doc => (
                 <NavLink key={doc.url} href={doc.url} onClick={onLinkClick}>
                   {doc.title}

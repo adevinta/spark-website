@@ -10,8 +10,8 @@ export const ComponentMenu = ({ slug }) => {
   const router = useRouter()
 
   const path = {
-    usage: `/docs/${slug}`,
-    props: `/docs/${slug}/props`,
+    usage: `/docs/components/${slug}`,
+    props: `/docs/components/${slug}/props`,
   }
 
   return (

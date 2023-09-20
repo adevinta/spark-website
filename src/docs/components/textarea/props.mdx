@@ -1,0 +1,31 @@
+---
+title: Textarea
+category: Components
+package: "@spark-ui/textarea"
+---
+
+export const data = docgen['textarea'] || {}
+
+## Textarea
+
+The textarea component allows you to easily create multi-line text inputs.
+
+<ComponentProps docgen={data["Textarea"]} />
+
+## TextareaGroup
+
+Use this wrapper whenever you need a more complex textarea. For example if you need to have leading/trailing icons.
+
+<ComponentProps docgen={data["TextareaGroup"]} />
+
+## TextareaGroup.LeadingIcon
+
+Prepend a decorative icon inside the textarea (to the left).
+
+<ComponentProps docgen={data["TextareaGroup.LeadingIcon"]} />
+
+## TextareaGroup.TrailingIcon
+
+Append a decorative icon inside the textarea (to the right). This element will be replaced by a status indicator whenever the textarea is in error/alert/success state.
+
+<ComponentProps docgen={data["TextareaGroup.TrailingIcon"]} />
