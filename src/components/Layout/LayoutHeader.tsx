@@ -29,7 +29,7 @@ export const LayoutHeader = ({ className, ...others }: LayoutHeaderProps) => {
         <div className="flex gap-md">
           <ModeIconButton intent="neutral" design="ghost" />
 
-          <IconButton intent="neutral" design="ghost" aria-label="GitHub">
+          <IconButton intent="neutral" design="ghost" aria-label="GitHub" asChild>
             <a
               href="https://github.com/adevinta/spark"
               target="_blank"
