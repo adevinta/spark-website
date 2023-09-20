@@ -9,9 +9,9 @@ import { MDXComponent } from '@/components/MDX/MDXComponent'
 import { DocsFooter } from '@/components/Docs/DocsFooter'
 import { getLocalData } from '@/utils/getLocalData'
 import { DocsHeader } from '@/components/Docs/DocsHeader'
+import { ComponentMenu } from '@/components/Shared/ComponentMenu'
 
 import projectPackage from '../../../../../package.json'
-import { ComponentMenu } from '@/components/Shared/ComponentMenu'
 
 interface DocsDetailPageProps {
   doc: Doc
