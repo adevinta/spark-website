@@ -149,8 +149,6 @@ export async function getStaticProps({ params }) {
   }
   const isCurrent = isCurrentDoc(currentDoc)
 
-  console.log('name', [category, name, ...rest].join('/'), index)
-
   return {
     props: {
       doc: currentDoc,
