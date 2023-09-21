@@ -56,7 +56,7 @@ export const Doc = defineDocumentType(() => ({
       type: 'string',
       description: 'The package name documented',
       required: false,
-    }
+    },
   },
   computedFields: {
     url: {
@@ -112,8 +112,8 @@ export const Doc = defineDocumentType(() => ({
     examples: {
       type: 'json',
       resolve: doc => {
-        const [, slug] = doc._raw.flattenedPath.split('/')
-        return examples[slug]
+        const [, categories, name, slug] = doc._raw.flattenedPath.split('/')
+        return examples[categories]?.[name]
       },
     },
   },

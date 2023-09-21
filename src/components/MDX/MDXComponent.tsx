@@ -20,7 +20,6 @@ const components = {
   code: Code,
   inlineCode: H3,
   CodeEditor,
-  ComponentMenu,
   ComponentProps,
   Raw,
 }
