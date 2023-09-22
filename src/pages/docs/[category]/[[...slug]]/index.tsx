@@ -76,7 +76,7 @@ const DocsDetailPage = ({
             />
             <div className="flex w-full grow flex-row gap-lg">
               <div className="relative flex min-w-0 flex-1 flex-col md:pl-lg">
-                <ComponentMenu slug={slug[0]}/>
+                <ComponentMenu slug={slug[0]} />
                 <MDXComponent
                   code={doc.body.code}
                   globals={{ examples: doc.examples, docgen: doc.docgen }}
@@ -109,7 +109,6 @@ export async function getStaticProps({ params }) {
 
   const [name, ...rest] = slug
 
-
   const index = allDocs.findIndex(
     (doc, index) => doc.slugAsParams === [category, name, ...rest].join('/'),
   )
@@ -123,7 +122,6 @@ export async function getStaticProps({ params }) {
     doc?.slugAsParams.split('/').slice(1) === currentDoc?.slugAsParams.split('/').slice(1)
 
   const currentDoc = allDocs[index]
-
 
   let packageJSON: {
     config?: {
@@ -146,6 +144,7 @@ export async function getStaticProps({ params }) {
   } = {}
   if (currentDoc.package) {
     packageJSON = await getLocalData(`node_modules/${currentDoc.package}/package.json`)
+    console.log({ packageJSON })
   }
   const isCurrent = isCurrentDoc(currentDoc)
 
