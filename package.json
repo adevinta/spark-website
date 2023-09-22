@@ -73,9 +73,11 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^17.7.0",
     "@commitlint/cz-commitlint": "^17.7.1",
+    "@docusaurus/utils": "^2.4.3",
     "commitizen": "^4.3.0",
     "eslint-config-prettier": "^9.0.0",
     "github-slugger": "^2.0.0",
+    "markdown-toc": "^1.2.0",
     "marked": "^8.0.0",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",

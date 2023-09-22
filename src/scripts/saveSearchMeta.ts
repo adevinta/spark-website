@@ -4,115 +4,111 @@ import fs from 'node:fs'
 import { v4 as uuid } from 'uuid'
 import prettier from 'prettier'
 import toc from 'markdown-toc'
-import { parseMarkdownFile, fileToPath, removePrefix } from '@docusaurus/utils'
+import { parseFrontMatter, fileToPath, removePrefix } from '@docusaurus/utils'
+import { getLocalData } from '@/utils/getLocalData'
 
-// const docsRootFolder = 'content/docs'
-// const configFolder = 'config'
+const docsDir = path.join(process.cwd(), 'src', 'docs', 'components')
+const configDir = path.join(process.cwd(), 'src', 'config')
 
-// interface ResultType {
-//   content: string
-//   objectID: string
-//   url: string
-//   type: 'lvl1' | 'lvl2' | 'lvl3'
-//   hierarchy: {
-//     lvl1: string | null
-//     lvl2?: string | null
-//     lvl3?: string | null
-//   }
-// }
+interface ResultType {
+  content: string
+  objectID: string
+  url: string
+  type: 'lvl1' | 'lvl2' | 'lvl3'
+  hierarchy: {
+    lvl1: string | null
+    lvl2?: string | null
+    lvl3?: string | null
+  }
+}
 
-// interface TOCResultItem {
-//   content: string
-//   slug: string
-//   lvl: 1 | 2 | 3
-//   i: number
-//   seen: number
-// }
+interface TOCResultItem {
+  content: string
+  slug: string
+  lvl: 1 | 2 | 3
+  i: number
+  seen: number
+}
 
-// const getUrl = (slug: string) => {
-//   const url = removePrefix(slug, '/')
+const getUrl = (file: string) => {
+  const [, , url] = file.match(/\/(.*)(\/docs\/.*\/.*)\/index.mdx/)
 
-//   return `/docs${url}`
-// }
+  return url
+}
 
-// async function getMDXMeta(file: string) {
-//   const { content, frontMatter: _frontMatter } = await parseMarkdownFile(file)
+async function getMDXMeta(file: string) {
+  const fileContent = fs.readFileSync(file, 'utf8')
+  const { content, frontMatter: _frontMatter } = await parseFrontMatter(fileContent)
+  const frontMatter = _frontMatter as Record<string, any>
+  // const packageData = await getLocalData(`node_modules/${frontMatter.package}/package.json`)
+  const tableOfContent = toc(content)
+  const json = tableOfContent.json as TOCResultItem[]
+  const title = frontMatter.title ?? ''
+  const url = getUrl(file)
+  const result: ResultType[] = []
 
-//   const frontMatter = _frontMatter as Record<string, any>
-//   const tableOfContent = toc(content)
-//   const json = tableOfContent.json as TOCResultItem[]
-//   let slug = fileToPath(file).replace(`/${docsRootFolder}`, '').replace(process.cwd(), '')
+  result.push({
+    content: title,
+    objectID: uuid(),
+    type: 'lvl1',
+    url: url,
+    hierarchy: {
+      lvl1: title,
+    },
+  })
 
-//   const result: ResultType[] = []
-//   const title = !!frontMatter.title ? frontMatter.title : ''
+  json.forEach((item, index) => {
+    item.content !== title &&
+      result.push({
+        content: item.content,
+        objectID: uuid(),
+        type: `lvl${item.lvl}`,
+        url: `${url}/#${item.slug}`,
+        hierarchy: {
+          lvl1: title,
+          lvl2: item.lvl === 2 ? item.content : json[index - 1]?.content ?? null,
+          lvl3: item.lvl === 3 ? item.content : null,
+        },
+      })
+  })
 
-//   result.push({
-//     content: title,
-//     objectID: uuid(),
-//     type: 'lvl1',
-//     url: getUrl(slug),
-//     hierarchy: {
-//       lvl1: title,
-//     },
-//   })
-
-//   json.forEach((item, index) => {
-//     item.content !== title &&
-//       result.push({
-//         content: item.content,
-//         objectID: uuid(),
-//         type: `lvl${item.lvl}`,
-//         url: getUrl(slug) + `#${item.slug}`,
-//         hierarchy: {
-//           lvl1: title,
-//           lvl2: item.lvl === 2 ? item.content : json[index - 1]?.content ?? null,
-//           lvl3: item.lvl === 3 ? item.content : null,
-//         },
-//       })
-//   })
-
-//   return result
-// }
+  return result
+}
 
 async function saveSearchMeta(saveMode: 'local' = 'local') {
   let json: any = []
 
   try {
-    // const files = shell
-    //   .ls('-R', docsRootFolder)
-    //   .map((file: any) => path.join(process.cwd(), docsRootFolder, file))
-    //   .filter((file: any) => file.endsWith('.mdx'))
+    const components = fs.readdirSync(docsDir)
 
-    const docsDir = path.join(process.cwd(), 'src', 'docs', 'components')
-    const picturesMetadataFile = path.join(process.cwd(), 'data', 'pictures', 'metadata.json')
+    for (const component of components) {
+      let result = []
+      const file = `${docsDir}/${component}/index.mdx`
 
-    const files = fs.readdirSync(docsDir)
-    console.log({ files })
+      try {
+        result = await getMDXMeta(file)
 
-    // for (const file of files) {
-    //   let result = []
+        json.push(...result)
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
-    //   try {
-    //     result = await getMDXMeta(file)
-    //     json.push(...result)
-    //   } catch (error) {}
-    // }
+    if (saveMode === 'local') {
+      json = await prettier.format(JSON.stringify(json), { parser: 'json' })
 
-    // if (saveMode === 'local') {
-    //   json = prettier.format(JSON.stringify(json), { parser: 'json' })
+      if (!fs.existsSync(configDir)) {
+        fs.mkdirSync(configDir)
+      }
 
-    //   if (!fs.existsSync(`${configFolder}`)) {
-    //     fs.mkdirSync(`${configFolder}`)
-    //   }
+      const outPath = `${configDir}/search-meta.json`
 
-    //   const outPath = path.join(process.cwd(), `${configFolder}`, 'search-meta.json')
+      fs.writeFileSync(outPath, json)
 
-    //   fs.writeFileSync(outPath, json)
+      console.log('[Spark UI ✨] Search meta is ready ✅')
 
-    //   console.log('[NextUI] Search meta is ready ✅')
-
-    //   return
-    // }
+      return
+    }
   } catch (error) {
     console.error(`[ERROR 🔥]:`, error)
   }
