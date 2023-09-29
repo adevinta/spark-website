@@ -79,11 +79,11 @@ async function saveSearchMeta(saveMode: 'local' = 'local') {
   let json: any = []
 
   try {
-    const components = fs.readdirSync(docsDir)
+    const packages = fs.readdirSync(docsDir)
 
-    for (const component of components) {
+    for (const package of packages) {
       let result = []
-      const file = `${docsDir}/${component}/index.mdx`
+      const file = `${docsDir}/${package}/index.mdx`
 
       try {
         result = await getMDXMeta(file)

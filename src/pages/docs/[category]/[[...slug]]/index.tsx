@@ -144,8 +144,8 @@ export async function getStaticProps({ params }) {
   } = {}
   if (currentDoc.package) {
     packageJSON = await getLocalData(`node_modules/${currentDoc.package}/package.json`)
-    console.log({ packageJSON })
   }
+
   const isCurrent = isCurrentDoc(currentDoc)
 
   return {
