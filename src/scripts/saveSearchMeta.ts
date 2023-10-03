@@ -40,7 +40,6 @@ async function getMDXMeta(file: string) {
   const fileContent = fs.readFileSync(file, 'utf8')
   const { content, frontMatter: _frontMatter } = await parseFrontMatter(fileContent)
   const frontMatter = _frontMatter as Record<string, any>
-  // const packageData = await getLocalData(`node_modules/${frontMatter.package}/package.json`)
   const tableOfContent = toc(content)
   const json = tableOfContent.json as TOCResultItem[]
   const title = frontMatter.title ?? ''
@@ -79,11 +78,11 @@ async function saveSearchMeta(saveMode: 'local' = 'local') {
   let json: any = []
 
   try {
-    const packages = fs.readdirSync(docsDir)
+    const pkgs = fs.readdirSync(docsDir)
 
-    for (const package of packages) {
+    for (const pkg of pkgs) {
       let result = []
-      const file = `${docsDir}/${package}/index.mdx`
+      const file = `${docsDir}/${pkg}/index.mdx`
 
       try {
         result = await getMDXMeta(file)

@@ -126,11 +126,9 @@ export function CmdK() {
   }, [query])
 
   const renderItem = useCallback(
-    (item: SearchResultItem, index: number, isRecent = false) => {
+    (item: SearchResultItem, index: number) => {
       const isLvl1 = item.type === 'lvl1'
-      const mainIcon = (
-        <Icon>{isLvl1 ? <CvFillIcon className="" /> : <CvOutlineIcon className="" />}</Icon>
-      )
+      const mainIcon = <Icon>{isLvl1 ? <CvFillIcon /> : <CvOutlineIcon />}</Icon>
 
       return (
         <Command.Item
