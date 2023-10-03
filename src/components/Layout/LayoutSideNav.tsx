@@ -1,4 +1,5 @@
 import { cx } from 'class-variance-authority'
+import { Root as ScrollArea, Viewport, Scrollbar, Thumb, Corner } from '@radix-ui/react-scroll-area'
 
 import { LayoutNav, LayoutNavProps } from './LayoutNav'
 
@@ -6,14 +7,33 @@ export type LayoutSideNavProps = LayoutNavProps
 
 export const LayoutSideNav = ({ className, ...others }: LayoutSideNavProps) => {
   return (
-    <LayoutNav
+    <div
       className={cx(
         'hidden md:block',
-        'sticky top-[--sz-64]',
-        'max-h-[calc(100vh-var(--sz-64))] shrink-0 basis-[--sz-256] py-sm',
+        'sticky top-[--sz-64] hidden h-[calc(100vh-var(--sz-64))] shrink-0 basis-[--sz-256] p-sm',
         className,
       )}
-      {...others}
-    />
+    >
+      <ScrollArea asChild className="h-[calc(100vh-var(--sz-176))] overflow-hidden">
+        <div>
+          <Viewport className="h-full w-full pr-md">
+            <LayoutNav {...others} />
+          </Viewport>
+          <Scrollbar
+            orientation="vertical"
+            className="flex touch-none select-none bg-basic-container py-sm transition-colors duration-200 ease-out hover:bg-basic-container-hovered data-[orientation=horizontal]:h-sz-4 data-[orientation=vertical]:w-sz-4 data-[orientation=horizontal]:flex-col"
+          >
+            <Thumb
+              className={cx([
+                'relative flex-1 rounded-full bg-basic ',
+                'before:absolute before:content-[""]',
+                'before:left-1/2 before:top-1/2 before:h-full before:min-h-sz-44 before:w-full before:min-w-sz-44 before:-translate-x-1/2 before:-translate-y-1/2',
+              ])}
+            />
+          </Scrollbar>
+          <Corner className="bg-main" />
+        </div>
+      </ScrollArea>
+    </div>
   )
 }

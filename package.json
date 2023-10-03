@@ -19,6 +19,7 @@
     "url": "https://github.com/adevinta/spark-website.git"
   },
   "dependencies": {
+    "@radix-ui/react-scroll-area": "^1.0.5",
     "@spark-ui/alert-dialog": "latest",
     "@spark-ui/badge": "latest",
     "@spark-ui/button": "latest",
