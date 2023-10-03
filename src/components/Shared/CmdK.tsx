@@ -174,7 +174,9 @@ export function CmdK() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <Button onClick={() => setIsOpen(true)}>Search...</Button>
+        <Button onClick={() => setIsOpen(true)}>
+          Search... <Kbd>CMD+K</Kbd>
+        </Button>
       </Dialog.Trigger>
 
       <Dialog.Portal>
@@ -189,14 +191,17 @@ export function CmdK() {
                 </InputGroup.LeadingIcon>
 
                 <Input
-                  aria-label=""
+                  aria-label="Search documentation"
                   placeholder="Search documentation..."
                   value={query}
                   onValueChange={setQuery}
                 />
 
                 {query.length > 0 && (
-                  <InputGroup.ClearButton onClick={() => setQuery('')} aria-label="" />
+                  <InputGroup.ClearButton
+                    onClick={() => setQuery('')}
+                    aria-label="Clear current value"
+                  />
                 )}
               </InputGroup>
             </Dialog.Header>
