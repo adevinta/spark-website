@@ -43,3 +43,6 @@ public/robots.txt
 
 # IDE
 .idea
+
+# metadata
+src/config/search-meta.json

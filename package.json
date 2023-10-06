@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "contentlayer build",
+    "postinstall": "contentlayer build && npm run save:search-meta",
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
