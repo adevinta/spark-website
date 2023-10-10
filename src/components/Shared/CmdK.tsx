@@ -182,7 +182,7 @@ export function CmdK() {
       <Dialog.Portal>
         <Dialog.Overlay />
 
-        <Dialog.Content className="overflow-y-auto">
+        <Dialog.Content className="overflow-y-auto" asChild>
           <Command label="Search documentation..." shouldFilter={false}>
             <Dialog.Header className="!px-lg !py-xl">
               <InputGroup onKeyDown={onInputKeyDown}>
