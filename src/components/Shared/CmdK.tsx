@@ -30,11 +30,14 @@ interface SearchResultItem {
 
 const MATCH_KEYS = ['hierarchy.lvl1', 'hierarchy.lvl2', 'hierarchy.lvl3', 'content']
 const MAX_RESULTS = 15
+const ACTION_KEY_DEFAULT = 'Ctrl'
+const ACTION_KEY_APPLE = 'Cmd'
 
 export function CmdK() {
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [activeItem, setActiveItem] = useState(0)
+  const [actionKey, setActionKey] = useState(ACTION_KEY_APPLE)
   const router = useRouter()
   const eventRef = useRef<'mouse' | 'keyboard'>()
   const results = useMemo<SearchResultItem[]>(
@@ -60,6 +63,18 @@ export function CmdK() {
     },
     [query],
   )
+
+  useEffect(() => {
+    if (typeof navigator === 'undefined') {
+      return
+    }
+
+    const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
+
+    if (!isMac) {
+      setActionKey(ACTION_KEY_DEFAULT)
+    }
+  }, [])
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -175,7 +190,7 @@ export function CmdK() {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
         <Button onClick={() => setIsOpen(true)}>
-          Search... <Kbd>CMD+K</Kbd>
+          Search... <Kbd className="uppercase">{actionKey}+K</Kbd>
         </Button>
       </Dialog.Trigger>
 
