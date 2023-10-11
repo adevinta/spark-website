@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "contentlayer build",
+    "postinstall": "contentlayer build && npm run save:search-meta",
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "prettier": "prettier --config .prettierrc.cjs --write \"src/**/*.{ts,tsx,js}\"",
     "prettify": "npm run lint && npm run prettier",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "save:search-meta": "tsx ./src/scripts/saveSearchMeta.ts"
   },
   "repository": {
     "type": "git",
@@ -52,9 +53,12 @@
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
+    "cmdk": "^0.2.0",
     "copy-to-clipboard": "^3.3.3",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
+    "lodash": "^4.17.21",
+    "match-sorter": "^6.3.1",
     "next": "13.4.19",
     "next-contentlayer": "^0.3.4",
     "next-seo": "^6.1.0",
@@ -72,15 +76,18 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^17.7.0",
     "@commitlint/cz-commitlint": "^17.7.1",
+    "@docusaurus/utils": "^2.4.3",
     "commitizen": "^4.3.0",
     "eslint-config-prettier": "^9.0.0",
     "github-slugger": "^2.0.0",
+    "markdown-toc": "^1.2.0",
     "marked": "^8.0.0",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",
-    "remark-gfm": "^3.0.1"
+    "remark-gfm": "^3.0.1",
+    "tsx": "^3.12.10"
   },
   "config": {
     "commitizen": {

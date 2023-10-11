@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { LogoIcon } from '@/components/Shared/Logo'
 import { LayoutContainer } from './LayoutContainer'
 import { LayoutNavButton } from './LayoutNavButton'
+import { CmdK } from '@/components/Shared/CmdK'
 
 export type LayoutHeaderProps = ComponentPropsWithoutRef<'header'>
 
@@ -27,6 +28,8 @@ export const LayoutHeader = ({ className, ...others }: LayoutHeaderProps) => {
         </Link>
 
         <div className="flex gap-md">
+          <CmdK />
+
           <ModeIconButton intent="neutral" design="ghost" />
 
           <IconButton intent="neutral" design="ghost" aria-label="GitHub" asChild>
