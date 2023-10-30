@@ -193,6 +193,7 @@ export function CmdK() {
       open={isOpen}
       onOpenChange={value => {
         setActiveItem(-1)
+        setQuery('')
         setIsOpen(value)
       }}
     >
@@ -203,9 +204,9 @@ export function CmdK() {
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="backdrop-blur-sm" />
+        <Dialog.Overlay className="backdrop-blur-sm backdrop-opacity-dim-0 ease-in" />
 
-        <Dialog.Content className="overflow-y-auto" asChild>
+        <Dialog.Content className="overflow-y-auto opacity-dim-1" asChild>
           <Command label="Search documentation..." shouldFilter={false}>
             <Dialog.Header className="!px-lg !py-xl">
               <InputGroup onKeyDown={onInputKeyDown}>
