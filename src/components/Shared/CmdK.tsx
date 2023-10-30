@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { cx } from 'class-variance-authority'
 import { Command } from 'cmdk'
 import { matchSorter } from 'match-sorter'
 import { intersectionBy } from 'lodash'
@@ -36,13 +35,13 @@ const ACTION_KEY_APPLE = 'Cmd'
 export function CmdK() {
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState('')
-  const [activeItem, setActiveItem] = useState(0)
+  const [activeItem, setActiveItem] = useState(-1)
   const [actionKey, setActionKey] = useState(ACTION_KEY_APPLE)
   const router = useRouter()
   const eventRef = useRef<'mouse' | 'keyboard'>()
   const results = useMemo<SearchResultItem[]>(
     function getResults() {
-      if (query.length < 2) return []
+      if (query.length < 1) return []
       const data = searchMeta as SearchResultItem[]
       const words = query.split(' ')
       const matchesForEachWord = words.map(word =>
@@ -93,33 +92,36 @@ export function CmdK() {
   const onItemSelect = useCallback(
     (item: SearchResultItem) => {
       setIsOpen(false)
+      setQuery('')
       router.push(item.url)
     },
     [router],
   )
 
   const onInputKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
+    (event: React.KeyboardEvent) => {
       eventRef.current = 'keyboard'
-      switch (e.key) {
+      const nextActiveItem = nextActiveItem => {
+        setActiveItem((results.length + nextActiveItem) % results.length)
+      }
+      switch (event.key) {
         case 'ArrowDown': {
-          e.preventDefault()
-          if (activeItem + 1 < results.length) {
-            setActiveItem(activeItem + 1)
-          }
+          event.preventDefault()
+          nextActiveItem(activeItem + 1)
           break
         }
         case 'ArrowUp': {
-          e.preventDefault()
-          if (activeItem - 1 >= 0) {
-            setActiveItem(activeItem - 1)
-          }
+          event.preventDefault()
+          nextActiveItem(activeItem - 1)
           break
         }
+        case 'Tab':
+          nextActiveItem(event.shiftKey ? activeItem - 1 : activeItem + 1)
+          break
         case 'Control':
         case 'Alt':
         case 'Shift': {
-          e.preventDefault()
+          event.preventDefault()
           break
         }
         case 'Enter': {
@@ -153,21 +155,21 @@ export function CmdK() {
           value={item.content}
           onMouseEnter={() => {
             eventRef.current = 'mouse'
-
             setActiveItem(index)
           }}
-          onSelect={() => {
-            if (eventRef.current === 'keyboard') {
+          onSelect={value => {
+            if (eventRef.current === 'keyboard' && activeItem !== -1) {
               return
             }
 
-            onItemSelect(item)
+            onItemSelect(activeItem === -1 ? results[index] : item)
           }}
         >
           <Button
             size="lg"
             design="outlined"
-            className="flex flex-grow justify-between transition-colors group-data-[active=true]:bg-main group-data-[active=true]:text-on-main-variant"
+            intent={activeItem === index ? 'main' : 'basic'}
+            className="flex flex-grow justify-between transition-colors"
           >
             {mainIcon}
 
@@ -187,15 +189,21 @@ export function CmdK() {
   )
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={value => {
+        setActiveItem(-1)
+        setIsOpen(value)
+      }}
+    >
       <Dialog.Trigger asChild>
-        <Button onClick={() => setIsOpen(true)}>
+        <Button design="outlined" intent="basic" onClick={() => setIsOpen(true)}>
           Search... <Kbd className="uppercase">{actionKey}+K</Kbd>
         </Button>
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay />
+        <Dialog.Overlay className="backdrop-blur-sm" />
 
         <Dialog.Content className="overflow-y-auto" asChild>
           <Command label="Search documentation..." shouldFilter={false}>
@@ -210,6 +218,7 @@ export function CmdK() {
                   placeholder="Search documentation..."
                   value={query}
                   onValueChange={setQuery}
+                  onBlur={e => e.target.focus()}
                 />
 
                 {query.length > 0 && (
@@ -222,22 +231,23 @@ export function CmdK() {
             </Dialog.Header>
 
             <Dialog.Body className="!px-lg !pt-none empty:!p-none">
-              {query.length > 0 && results.length > 0 && (
-                <Command.List role="listbox">
+              {query.length > 0 && (
+                <>
                   <Command.Empty>
-                    <div>
-                      <p>No results for &quot;{query}&quot;</p>
+                    <p>No results for &quot;{query}&quot;</p>
 
-                      <p className="text-default-400">
-                        {query.length === 1
-                          ? ' Try adding more characters to your search term.'
-                          : ' Try searching for something else.'}
-                      </p>
-                    </div>
+                    <p className="text-default-400">
+                      {query.length === 1
+                        ? ' Try adding more characters to your search term.'
+                        : ' Try searching for something else.'}
+                    </p>
                   </Command.Empty>
-
-                  <div className="flex flex-col gap-md">{results.map(renderItem)}</div>
-                </Command.List>
+                  {results.length > 0 && (
+                    <Command.List role="listbox">
+                      <div className="flex flex-col gap-md py-sm">{results.map(renderItem)}</div>
+                    </Command.List>
+                  )}
+                </>
               )}
             </Dialog.Body>
           </Command>
