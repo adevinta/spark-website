@@ -167,7 +167,7 @@ export function CmdK() {
         >
           <Button
             size="lg"
-            design="outlined"
+            design={activeItem === index ? 'filled' : 'outlined'}
             intent={activeItem === index ? 'main' : 'basic'}
             className="flex flex-grow justify-between transition-colors"
           >
@@ -204,7 +204,7 @@ export function CmdK() {
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="backdrop-blur-sm backdrop-opacity-dim-0 ease-in" />
+        <Dialog.Overlay className="backdrop-opacity-dim-0 backdrop-blur-sm ease-in" />
 
         <Dialog.Content className="overflow-y-auto opacity-dim-1" asChild>
           <Command label="Search documentation..." shouldFilter={false}>
