@@ -150,7 +150,7 @@ export function CmdK() {
       return (
         <Command.Item
           key={item.objectID}
-          className="group flex"
+          className="flex"
           data-active={index === activeItem}
           value={item.content}
           onMouseEnter={() => {
@@ -204,7 +204,7 @@ export function CmdK() {
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="backdrop-opacity-dim-0 backdrop-blur-sm ease-in" />
+        <Dialog.Overlay className="backdrop-blur-sm backdrop-opacity-dim-0 ease-in" />
 
         <Dialog.Content className="overflow-y-auto opacity-dim-1" asChild>
           <Command label="Search documentation..." shouldFilter={false}>
