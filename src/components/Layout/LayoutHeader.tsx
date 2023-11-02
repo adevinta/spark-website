@@ -28,7 +28,6 @@ export const LayoutHeader = ({ className, ...others }: LayoutHeaderProps) => {
         </Link>
 
         <div className="flex gap-md">
-          <CmdK />
 
           <ModeIconButton intent="neutral" design="ghost" />
 
@@ -44,7 +43,9 @@ export const LayoutHeader = ({ className, ...others }: LayoutHeaderProps) => {
             </a>
           </IconButton>
 
-          <LayoutNavButton className="md:hidden" intent="neutral" design="ghost" />
+          <CmdK />
+
+          <LayoutNavButton className="lg:hidden" intent="neutral" design="ghost" />
         </div>
       </LayoutContainer>
     </header>
