@@ -4,6 +4,7 @@ import { Command } from 'cmdk'
 import { matchSorter } from 'match-sorter'
 import { intersectionBy } from 'lodash'
 import { Button } from '@spark-ui/button'
+import { IconButton } from '@spark-ui/icon-button'
 import { Icon } from '@spark-ui/icon'
 import { Input, InputGroup } from '@spark-ui/input'
 import { Kbd } from '@spark-ui/kbd'
@@ -198,13 +199,31 @@ export function CmdK() {
       }}
     >
       <Dialog.Trigger asChild>
-        <Button design="outlined" intent="basic" onClick={() => setIsOpen(true)}>
+        <Button
+          className="hidden lg:block"
+          design="outlined"
+          intent="basic"
+          onClick={() => setIsOpen(true)}
+        >
           Search... <Kbd className="uppercase">{actionKey}+K</Kbd>
         </Button>
       </Dialog.Trigger>
+      <Dialog.Trigger asChild>
+        <IconButton
+          aria-label="find"
+          className="lg:hidden block"
+          intent="neutral"
+          design="ghost"
+          onClick={() => setIsOpen(true)}
+        >
+          <Icon>
+            <SearchIcon />
+          </Icon>
+        </IconButton>
+      </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="backdrop-blur-sm backdrop-opacity-dim-0 ease-in" />
+        <Dialog.Overlay className="backdrop-opacity-dim-0 backdrop-blur-sm ease-in" />
 
         <Dialog.Content className="overflow-y-auto opacity-dim-1" asChild>
           <Command label="Search documentation..." shouldFilter={false}>
