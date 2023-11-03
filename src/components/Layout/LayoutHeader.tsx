@@ -30,7 +30,6 @@ export const LayoutHeader = ({ hasSearch, className, ...others }: LayoutHeaderPr
         </Link>
 
         <div className="flex gap-md">
-
           <ModeIconButton intent="neutral" design="ghost" />
 
           <IconButton intent="neutral" design="ghost" aria-label="GitHub" asChild>
