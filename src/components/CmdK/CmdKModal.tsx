@@ -6,7 +6,6 @@ import { intersectionBy } from 'lodash'
 import { Button } from '@spark-ui/button'
 import { Icon } from '@spark-ui/icon'
 import { Input, InputGroup } from '@spark-ui/input'
-import { Kbd } from '@spark-ui/kbd'
 import { Dialog } from '@spark-ui/dialog'
 import { Search as SearchIcon } from '@spark-ui/icons/dist/icons/Search'
 import { CvFill as CvFillIcon } from '@spark-ui/icons/dist/icons/CvFill'
@@ -14,6 +13,7 @@ import { CvOutline as CvOutlineIcon } from '@spark-ui/icons/dist/icons/CvOutline
 import { ArrowVerticalRight as ArrowVerticalRightIcon } from '@spark-ui/icons/dist/icons/ArrowVerticalRight'
 import { useUpdateEffect } from '@/hooks/useUpdateEffect'
 import searchMeta from '@/config/search-meta.json'
+import { useCmdK } from '@/components/CmdK'
 
 interface SearchResultItem {
   content: string
@@ -29,14 +29,11 @@ interface SearchResultItem {
 
 const MATCH_KEYS = ['hierarchy.lvl1', 'hierarchy.lvl2', 'hierarchy.lvl3', 'content']
 const MAX_RESULTS = 15
-const ACTION_KEY_DEFAULT = 'Ctrl'
-const ACTION_KEY_APPLE = 'Cmd'
 
-export function CmdK() {
-  const [isOpen, setIsOpen] = useState(false)
+export function CmdKModal() {
+  const { isOpen, setIsOpen } = useCmdK()
   const [query, setQuery] = useState('')
   const [activeItem, setActiveItem] = useState(-1)
-  const [actionKey, setActionKey] = useState(ACTION_KEY_APPLE)
   const router = useRouter()
   const eventRef = useRef<'mouse' | 'keyboard'>()
   const results = useMemo<SearchResultItem[]>(
@@ -62,18 +59,6 @@ export function CmdK() {
     },
     [query],
   )
-
-  useEffect(() => {
-    if (typeof navigator === 'undefined') {
-      return
-    }
-
-    const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
-
-    if (!isMac) {
-      setActionKey(ACTION_KEY_DEFAULT)
-    }
-  }, [])
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -197,14 +182,8 @@ export function CmdK() {
         setIsOpen(value)
       }}
     >
-      <Dialog.Trigger asChild>
-        <Button design="outlined" intent="basic" onClick={() => setIsOpen(true)}>
-          Search... <Kbd className="uppercase">{actionKey}+K</Kbd>
-        </Button>
-      </Dialog.Trigger>
-
       <Dialog.Portal>
-        <Dialog.Overlay className="backdrop-blur-sm backdrop-opacity-dim-0 ease-in" />
+        <Dialog.Overlay className="backdrop-opacity-dim-0 backdrop-blur-sm ease-in" />
 
         <Dialog.Content className="overflow-y-auto opacity-dim-1" asChild>
           <Command label="Search documentation..." shouldFilter={false}>

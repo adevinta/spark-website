@@ -1,20 +1,48 @@
 import { NextSeo } from 'next-seo'
 
 import { LayoutHeader } from '@/components/Layout/LayoutHeader'
-import { LayoutContainer } from '@/components/Layout/LayoutContainer'
+import { useCmdK } from '@/components/CmdK'
+import { CmdKTrigger } from '@/components/CmdK/CmdKTrigger'
+
+const boxShadow = [
+  'inset 0em 0 3em rgb(var(--colors-surface))',
+  'inset 0 -1em 3em rgb(var(--colors-support))',
+  'inset 1em 0 3em rgb(var(--colors-alert))',
+  'inset -1em 0 3em rgb(var(--colors-accent))',
+  'inset 0 1em 3em rgb(var(--colors-main))',
+  '0 0 2em rgb(var(--colors-surface))',
+  '1em 0 30em rgb(var(--colors-accent))',
+  '0 1em 10em rgb(var(--colors-accent))',
+  '-1em 0 30em rgb(var(--colors-alert))',
+  '0 -1em 10em rgb(var(--colors-alert))',
+].join(',')
 
 export default function IndexPage() {
+  const { isOpen, setIsOpen } = useCmdK()
   return (
     <>
       <NextSeo title="Home" />
 
       <LayoutHeader />
 
-      <LayoutContainer className="my-xl flex flex-col gap-sm" asChild>
-        <main>
-          <h1 className="text-display-2">Home</h1>
-        </main>
-      </LayoutContainer>
+      <main>
+        <div className="fixed h-[calc(100dvh-64px)] w-full overflow-hidden">
+          <div className="ml-[-50%] mr-[-50%] aspect-square w-[200%] pt-[75dvh]">
+            <div
+              className="flex aspect-square w-full rounded-full text-[10em]"
+              style={{ boxShadow }}
+            />
+          </div>
+        </div>
+        <div className="absolute flex h-[calc(100dvh-64px)] w-full flex-col items-center justify-center">
+          <span className="text-[3rem] font-[900] sm:text-[5rem] md:text-[7rem] lg:text-[10rem]">
+            @spark-ui
+          </span>
+          <div>
+            <CmdKTrigger isResponsive={false} />
+          </div>
+        </div>
+      </main>
     </>
   )
 }
