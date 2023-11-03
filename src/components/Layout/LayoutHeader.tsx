@@ -9,11 +9,13 @@ import Link from 'next/link'
 import { LogoIcon } from '@/components/Shared/Logo'
 import { LayoutContainer } from './LayoutContainer'
 import { LayoutNavButton } from './LayoutNavButton'
-import { CmdK } from '@/components/Shared/CmdK'
+import { CmdKTrigger } from '@/components/CmdK/CmdKTrigger'
 
-export type LayoutHeaderProps = ComponentPropsWithoutRef<'header'>
+export interface LayoutHeaderProps extends ComponentPropsWithoutRef<'header'> {
+  hasSearch?: boolean
+}
 
-export const LayoutHeader = ({ className, ...others }: LayoutHeaderProps) => {
+export const LayoutHeader = ({ hasSearch, className, ...others }: LayoutHeaderProps) => {
   return (
     <header
       className={cx(
@@ -43,7 +45,7 @@ export const LayoutHeader = ({ className, ...others }: LayoutHeaderProps) => {
             </a>
           </IconButton>
 
-          <CmdK />
+          {hasSearch && <CmdKTrigger />}
 
           <LayoutNavButton className="lg:hidden" intent="neutral" design="ghost" />
         </div>
