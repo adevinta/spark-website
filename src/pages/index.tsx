@@ -5,16 +5,13 @@ import { useCmdK } from '@/components/CmdK'
 import { CmdKTrigger } from '@/components/CmdK/CmdKTrigger'
 
 const boxShadow = [
-  'inset 0em 0 3em rgb(var(--colors-surface))',
+  'inset 0 0 .1em .05em #FFFFFF',
   'inset 0 -1em 3em rgb(var(--colors-support))',
-  'inset 1em 0 3em rgb(var(--colors-alert))',
+  'inset 1em 0 3em rgb(var(--colors-main))',
   'inset -1em 0 3em rgb(var(--colors-accent))',
-  'inset 0 1em 3em rgb(var(--colors-main))',
-  '0 0 2em rgb(var(--colors-surface))',
-  '1em 0 30em rgb(var(--colors-accent))',
-  '0 1em 10em rgb(var(--colors-accent))',
-  '-1em 0 30em rgb(var(--colors-alert))',
-  '0 -1em 10em rgb(var(--colors-alert))',
+  '0 0 .5em #FFFFFF',
+  '2em 0em 1em .7em rgb(var(--colors-accent))',
+  '-2em -.5em 1em .7em rgb(var(--colors-main))',
 ].join(',')
 
 export default function IndexPage() {
