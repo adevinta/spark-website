@@ -7,14 +7,16 @@ import { Icon } from '@spark-ui/icon'
 export type ModeIconButtonProps = Omit<IconButtonProps, 'aria-label'>
 
 export const ModeIconButton = (props: ModeIconButtonProps) => {
+  const { theme, resolvedTheme, setTheme } = useTheme()
   const [isMounted, setIsMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    setTheme(prefersDark ? 'dark' : 'light')
+    if (!resolvedTheme) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      setTheme(prefersDark ? 'dark' : 'light')
+    }
     setIsMounted(true)
-  }, [])
+  }, [resolvedTheme, setTheme])
 
   const handleClick = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
