@@ -3,6 +3,7 @@ import { NextSeo } from 'next-seo'
 import { LayoutHeader } from '@/components/Layout/LayoutHeader'
 import { useCmdK } from '@/components/CmdK'
 import { CmdKTrigger } from '@/components/CmdK/CmdKTrigger'
+import { Background } from '@/components/Background'
 
 const boxShadow = [
   'inset 0 0 .1em .05em #FFFFFF',
@@ -21,6 +22,7 @@ export default function IndexPage() {
       <NextSeo title="Home" />
 
       <LayoutHeader />
+      <Background />
 
       <main>
         <div className="fixed h-[calc(100dvh-64px)] w-full overflow-hidden">
