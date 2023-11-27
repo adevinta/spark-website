@@ -158,17 +158,9 @@ export const Background = ({ className }: { className?: string }) => {
             x="-582"
             y="497.789"
           >
-            <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-            <feBlend
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              mode="normal"
-              result="shape"
-            ></feBlend>
-            <feGaussianBlur
-              result="effect1_foregroundBlur_106_41"
-              stdDeviation="50"
-            ></feGaussianBlur>
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
           </filter>
           <filter
             colorInterpolationFilters="sRGB"
@@ -179,17 +171,9 @@ export const Background = ({ className }: { className?: string }) => {
             x="-467.015"
             y="473.789"
           >
-            <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-            <feBlend
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              mode="normal"
-              result="shape"
-            ></feBlend>
-            <feGaussianBlur
-              result="effect1_foregroundBlur_106_41"
-              stdDeviation="50"
-            ></feGaussianBlur>
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
           </filter>
           <filter
             colorInterpolationFilters="sRGB"
@@ -200,17 +184,9 @@ export const Background = ({ className }: { className?: string }) => {
             x="997.614"
             y="-160.955"
           >
-            <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-            <feBlend
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              mode="normal"
-              result="shape"
-            ></feBlend>
-            <feGaussianBlur
-              result="effect1_foregroundBlur_106_41"
-              stdDeviation="50"
-            ></feGaussianBlur>
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
           </filter>
           <filter
             colorInterpolationFilters="sRGB"
@@ -221,17 +197,9 @@ export const Background = ({ className }: { className?: string }) => {
             x="973.772"
             y="-394.011"
           >
-            <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-            <feBlend
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              mode="normal"
-              result="shape"
-            ></feBlend>
-            <feGaussianBlur
-              result="effect1_foregroundBlur_106_41"
-              stdDeviation="50"
-            ></feGaussianBlur>
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
           </filter>
           <filter
             colorInterpolationFilters="sRGB"
@@ -242,17 +210,9 @@ export const Background = ({ className }: { className?: string }) => {
             x="143.302"
             y="-510.629"
           >
-            <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-            <feBlend
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              mode="normal"
-              result="shape"
-            ></feBlend>
-            <feGaussianBlur
-              result="effect1_foregroundBlur_106_41"
-              stdDeviation="50"
-            ></feGaussianBlur>
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
           </filter>
           <filter
             colorInterpolationFilters="sRGB"
@@ -263,17 +223,9 @@ export const Background = ({ className }: { className?: string }) => {
             x="33.001"
             y="-511.685"
           >
-            <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-            <feBlend
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              mode="normal"
-              result="shape"
-            ></feBlend>
-            <feGaussianBlur
-              result="effect1_foregroundBlur_106_41"
-              stdDeviation="50"
-            ></feGaussianBlur>
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
           </filter>
           <filter
             colorInterpolationFilters="sRGB"
@@ -284,17 +236,9 @@ export const Background = ({ className }: { className?: string }) => {
             x="319.573"
             y="480"
           >
-            <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-            <feBlend
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              mode="normal"
-              result="shape"
-            ></feBlend>
-            <feGaussianBlur
-              result="effect1_foregroundBlur_106_41"
-              stdDeviation="50"
-            ></feGaussianBlur>
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
           </filter>
           <filter
             colorInterpolationFilters="sRGB"
@@ -305,20 +249,12 @@ export const Background = ({ className }: { className?: string }) => {
             x="448.572"
             y="523.067"
           >
-            <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
-            <feBlend
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              mode="normal"
-              result="shape"
-            ></feBlend>
-            <feGaussianBlur
-              result="effect1_foregroundBlur_106_41"
-              stdDeviation="50"
-            ></feGaussianBlur>
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
           </filter>
           <clipPath id="clip0_Background">
-            <rect fill="white" height="800" width="1440"></rect>
+            <rect fill="white" height="800" width="1440" />
           </clipPath>
         </defs>
       </svg>
