@@ -53,7 +53,7 @@ const DocsDetailPage = ({
     <>
       <NextSeo title={doc.title} />
 
-      <LayoutHeader />
+      <LayoutHeader hasSearch />
 
       <LayoutContainer className="flex min-h-[calc(100dvh-var(--sz-64))] w-full">
         <LayoutSideNav />
