@@ -15,7 +15,7 @@ export const Background = ({ className }: { className?: string }) => {
         className="min-h-[calc(calc(100dvw/1.8)-64px) min-w-[calc(calc(100dvh-64px)*1.8)]"
       >
         <g clipPath="url(#clip0_Background)">
-          <g filter="url(#filter0_Background)">
+          <g filter="url(#filter0_Background)" className="mix-blend-color-dodge">
             <path
               d="M304 790.031C129.768 684.678 -406.4 1167.32 -413.584 1177.23C-718.041 1523.9 91.1496 1378.93 110.908 1378.93C-180.976 1161.92 286.936 941.307 304 790.031Z"
               className="fill-main"
@@ -67,7 +67,11 @@ export const Background = ({ className }: { className?: string }) => {
               className="fill-background"
             />
           </g>
-          <g filter="url(#filter2_Background)" transform="translate(0, -100)">
+          <g
+            filter="url(#filter2_Background)"
+            transform="translate(0, -100)"
+            className="mix-blend-color-dodge"
+          >
             <path
               d="M1140.7 659.115C1237.3 776.059 1733.06 568.547 1740.55 563.349C2039.92 394.456 1529.82 270.985 1515.93 266.125C1515.82 644.929 1189.91 556.934 1140.7 659.115Z"
               className="fill-main"
@@ -113,7 +117,17 @@ export const Background = ({ className }: { className?: string }) => {
               className="fill-main"
             />
           </g>
-          <g filter="url(#filter5_Background)" className="mix-blend-color-dodge">
+          <g filter="url(#filter5_Background)" transform="translate(0,400)">
+            <path
+              d="M664.474 107.87C641.358 124.696 170.932 248.337 252.874 -365.067C364.865 -442.45 573.937 -82.0188 664.474 107.87Z"
+              className="fill-main-container"
+            />
+            <path
+              d="M393.411 -410.629C304.927 -322.705 264.346 -131.269 559.222 44.9769C895.049 245.699 621.708 -244.567 393.411 -410.629Z"
+              className="fill-accent-variant"
+            />
+          </g>
+          <g filter="url(#filter6_Background)" className="mix-blend-color-dodge">
             <path
               d="M574.831 -4.21438C548.914 8.94132 102.388 98.0663 399.01 -400.636C523.041 -460.996 567.904 -161.505 574.831 -4.21438Z"
               className="fill-main-variant"
@@ -123,7 +137,17 @@ export const Background = ({ className }: { className?: string }) => {
               className="fill-main"
             />
           </g>
-          <g filter="url(#filter6_Background)">
+          <g filter="url(#filter7_Background)" transform="translate(1000,-500)">
+            <path
+              d="M154.112 907.632C199.29 842.305 -106.329 850.19 -264.786 862.298C-330.693 866.536 -268.337 961.966 -230.885 1105.97C-193.433 1249.98 -112.876 1172.93 -47.2874 1047.13C18.301 921.334 97.6386 989.29 154.112 907.632Z"
+              className="fill-accent"
+            />
+            <path
+              d="M129.742 813.25C121.087 785.316 -133.815 944.257 -260.183 1027.22C-161.46 1101.1 30.9269 1225.49 10.6881 1132.06C-14.6104 1015.27 38.8021 937.856 66.9417 910.779C95.0813 883.702 140.561 848.167 129.742 813.25Z"
+              className="fill-alert"
+            />
+          </g>
+          <g filter="url(#filter8_Background)">
             <path
               d="M769.312 668.888C713.944 557.598 514.063 824.819 421.044 972.341C390.178 1176.9 855.682 1237.6 798.814 1090.2C709.734 859.309 662.489 874.183 769.312 668.888Z"
               className="fill-main"
@@ -134,7 +158,7 @@ export const Background = ({ className }: { className?: string }) => {
             />
           </g>
           <g
-            filter="url(#filter7_Background)"
+            filter="url(#filter9_Background)"
             className="mix-blend-color-dodge"
             transform="translate(-100,-300)"
           >
@@ -145,6 +169,16 @@ export const Background = ({ className }: { className?: string }) => {
             <path
               d="M659.751 623.067C701.685 706.135 796.541 1056.39 720.674 1072.64C841.345 1298.97 924.265 848.906 928.13 838.608C758.217 948.408 735.057 661.476 659.751 623.067Z"
               className="fill-error"
+            />
+          </g>
+          <g filter="url(#filter10_Background)" transform="translate(200,-400),rotate(90)">
+            <path
+              d="M664.474 107.87C641.358 124.696 170.932 248.337 252.874 -365.067C364.865 -442.45 573.937 -82.0188 664.474 107.87Z"
+              className="fill-alert"
+            />
+            <path
+              d="M393.411 -410.629C304.927 -322.705 264.346 -131.269 559.222 44.9769C895.049 245.699 621.708 -244.567 393.411 -410.629Z"
+              className="fill-main"
             />
           </g>
         </g>
@@ -217,8 +251,21 @@ export const Background = ({ className }: { className?: string }) => {
           <filter
             colorInterpolationFilters="sRGB"
             filterUnits="userSpaceOnUse"
-            height="771.866"
+            height="739.821"
             id="filter5_Background"
+            width="672.933"
+            x="143.302"
+            y="-510.629"
+          >
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
+          </filter>
+          <filter
+            colorInterpolationFilters="sRGB"
+            filterUnits="userSpaceOnUse"
+            height="771.866"
+            id="filter6_Background"
             width="759.207"
             x="33.001"
             y="-511.685"
@@ -230,8 +277,21 @@ export const Background = ({ className }: { className?: string }) => {
           <filter
             colorInterpolationFilters="sRGB"
             filterUnits="userSpaceOnUse"
+            height="1060.69"
+            id="filter7_Background"
+            width="852.948"
+            x="-467.015"
+            y="473.789"
+          >
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
+          </filter>
+          <filter
+            colorInterpolationFilters="sRGB"
+            filterUnits="userSpaceOnUse"
             height="791.621"
-            id="filter6_Background"
+            id="filter8_Background"
             width="703.374"
             x="319.573"
             y="480"
@@ -244,10 +304,23 @@ export const Background = ({ className }: { className?: string }) => {
             colorInterpolationFilters="sRGB"
             filterUnits="userSpaceOnUse"
             height="761.554"
-            id="filter7_Background"
+            id="filter9_Background"
             width="584.064"
             x="448.572"
             y="523.067"
+          >
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+            <feGaussianBlur result="effect1_foregroundBlur_Background" stdDeviation="50" />
+          </filter>
+          <filter
+            colorInterpolationFilters="sRGB"
+            filterUnits="userSpaceOnUse"
+            height="739.821"
+            id="filter10_Background"
+            width="672.933"
+            x="143.302"
+            y="-510.629"
           >
             <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />

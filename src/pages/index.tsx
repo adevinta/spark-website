@@ -25,16 +25,8 @@ export default function IndexPage() {
       <Background />
 
       <main>
-        <div className="fixed h-[calc(100dvh-64px)] w-full overflow-hidden">
-          <div className="ml-[-50%] mr-[-50%] aspect-square w-[200%] pt-[75dvh]">
-            <div
-              className="flex aspect-square w-full rounded-full text-[10em]"
-              style={{ boxShadow }}
-            />
-          </div>
-        </div>
         <div className="absolute flex h-[calc(100dvh-64px)] w-full flex-col items-center justify-center">
-          <span className="text-[3rem] font-[900] sm:text-[5rem] md:text-[7rem] lg:text-[10rem]">
+          <span className="text-[3rem] font-[900] sm:text-[5rem] md:text-[7rem] lg:text-[10rem] mix-blend-overlay">
             @spark-ui
           </span>
           <div>
