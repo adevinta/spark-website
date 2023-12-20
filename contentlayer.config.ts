@@ -39,7 +39,7 @@ const docgenData = readDocgenFiles()
 
 export const Doc = defineDocumentType(() => ({
   name: 'Doc',
-  filePathPattern: `docs/**/*.mdx`,
+  filePathPattern: `content/**/*.mdx`,
   contentType: 'mdx',
   fields: {
     title: {
@@ -61,12 +61,16 @@ export const Doc = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: doc => `/${doc._raw.flattenedPath}`,
+      resolve: doc => {
+        const [root,...rest] = doc._raw.flattenedPath.split('/')
+
+        return `/${rest.join('/')}`
+      },
     },
     slugAsParams: {
       type: 'string',
       resolve: doc => {
-        const [, ...slugs] = doc._raw.flattenedPath.split('/')
+        const [,, ...slugs] = doc._raw.flattenedPath.split('/')
         const slugAsParams = slugs.filter(slug => slug !== 'index.mdx').join('/')
 
         return slugAsParams
@@ -105,14 +109,15 @@ export const Doc = defineDocumentType(() => ({
     },
     docgen: {
       type: 'json',
-      resolve: () => {
-        return docgenData
+      resolve: (doc) => {
+        const [root,, , name] = doc._raw.sourceFileDir.split('/')
+        return docgenData[name] || {}
       },
     },
     examples: {
       type: 'json',
       resolve: doc => {
-        const [, categories, name, slug] = doc._raw.flattenedPath.split('/')
+        const [root,, categories, name, slug] = doc._raw.flattenedPath.split('/')
         return examples[categories]?.[name]
       },
     },

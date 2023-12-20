@@ -1,7 +1,6 @@
 import React from 'react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { CodeEditor } from '@/components/Shared/CodeEditor'
-import { ComponentMenu } from '@/components/Shared/ComponentMenu'
 import { ComponentProps } from '@/components/Shared/ComponentProps'
 import { Raw } from '@/components/Shared/Raw'
 import { cx } from 'class-variance-authority'

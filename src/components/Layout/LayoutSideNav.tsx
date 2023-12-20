@@ -1,12 +1,13 @@
 import { cx } from 'class-variance-authority'
+import {Slot} from "@spark-ui/slot";
 
-import { LayoutNav, LayoutNavProps } from './LayoutNav'
+import {LayoutNavProps } from './LayoutNav'
 
-export type LayoutSideNavProps = LayoutNavProps
+export type LayoutSideNavProps = Omit<LayoutNavProps, 'categories'>
 
-export const LayoutSideNav = ({ className, ...others }: LayoutSideNavProps) => {
+export const LayoutSideNav = ({ className, children, ...others }: LayoutSideNavProps) => {
   return (
-    <LayoutNav
+    <Slot
       className={cx(
         'hidden md:block',
         'sticky top-[--sz-64]',
@@ -14,6 +15,8 @@ export const LayoutSideNav = ({ className, ...others }: LayoutSideNavProps) => {
         className,
       )}
       {...others}
-    />
+    >
+      {children}
+    </Slot>
   )
 }
