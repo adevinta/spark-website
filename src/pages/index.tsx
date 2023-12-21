@@ -26,7 +26,7 @@ export default function IndexPage() {
 
       <main>
         <div className="absolute flex h-[calc(100dvh-64px)] w-full flex-col items-center justify-center">
-          <span className="text-[3rem] font-[900] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] text-on-background-variant">
+          <span className="text-[3rem] font-[900] text-on-background-variant sm:text-[4rem] md:text-[5rem] lg:text-[6rem]">
             @spark-ui
           </span>
           <div>

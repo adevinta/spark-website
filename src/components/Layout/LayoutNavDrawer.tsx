@@ -4,7 +4,7 @@ import { VisuallyHidden } from '@spark-ui/visually-hidden'
 import {Doc} from "contentlayer/generated";
 
 export interface LayoutNavDrawerProps extends DrawerProps {
-  categories: {[key: string]: Doc[]}
+  categories?: {[key: string]: Doc[]}
 }
 
 export const LayoutNavDrawer = ({ onOpenChange, categories, ...others }: LayoutNavDrawerProps) => {

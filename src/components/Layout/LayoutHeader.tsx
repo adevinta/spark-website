@@ -14,7 +14,7 @@ import {Doc} from "contentlayer/generated";
 
 export interface LayoutHeaderProps extends ComponentPropsWithoutRef<'header'> {
   hasSearch?: boolean
-  categories: {[key: string]: Doc[]}
+  categories?: {[key: string]: Doc[]}
 }
 
 export const LayoutHeader = ({ hasSearch, categories, className, ...others }: LayoutHeaderProps) => {

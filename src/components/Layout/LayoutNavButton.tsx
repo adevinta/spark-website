@@ -8,7 +8,7 @@ import { Doc } from 'contentlayer/generated'
 
 type LayoutNavButtonType = Omit<IconButtonProps, 'aria-label'>
 export interface LayoutNavButtonProps extends LayoutNavButtonType {
-  categories: { [key: string]: Doc[] }
+  categories?: { [key: string]: Doc[] }
 }
 
 export const LayoutNavButton = ({ categories, ...props }: LayoutNavButtonProps) => {
