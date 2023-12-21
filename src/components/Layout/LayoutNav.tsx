@@ -10,15 +10,14 @@ export interface LayoutNavProps extends NavProps {
   categories: {[key: string]: Doc[]}
 }
 
-export const LayoutNav = ({ onLinkClick, categories, ...others }: LayoutNavProps) => {
+export const LayoutNav = ({ onLinkClick, categories = {}, ...others }: LayoutNavProps) => {
   return (
     <Nav {...others}>
-      {Object.keys(categories).map(category => {
-        const docs = categories[category]
+      {Object.entries(categories).map(([categoryName, docs]) => {
 
         return (
-          <Fragment key={category}>
-            <NavSeparator>{category}</NavSeparator>
+          <Fragment key={categoryName}>
+            <NavSeparator>{categoryName}</NavSeparator>
             {docs
               .filter(doc => doc.slugAsParams.split('/').length === 2)
               .map(doc => (

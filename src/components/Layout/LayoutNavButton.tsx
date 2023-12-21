@@ -4,10 +4,14 @@ import { BurgerMenu } from '@spark-ui/icons'
 import { useState } from 'react'
 
 import { LayoutNavDrawer } from './LayoutNavDrawer'
+import { Doc } from 'contentlayer/generated'
 
-export type LayoutNavButtonProps = Omit<IconButtonProps, 'aria-label'>
+type LayoutNavButtonType = Omit<IconButtonProps, 'aria-label'>
+export interface LayoutNavButtonProps extends LayoutNavButtonType {
+  categories: { [key: string]: Doc[] }
+}
 
-export const LayoutNavButton = (props: LayoutNavButtonProps) => {
+export const LayoutNavButton = ({ categories, ...props }: LayoutNavButtonProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
@@ -26,7 +30,7 @@ export const LayoutNavButton = (props: LayoutNavButtonProps) => {
         </Icon>
       </IconButton>
 
-      <LayoutNavDrawer open={isOpen} onOpenChange={handleOpenChange} />
+      <LayoutNavDrawer open={isOpen} onOpenChange={handleOpenChange} categories={categories} />
     </>
   )
 }
