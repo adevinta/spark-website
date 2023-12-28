@@ -35,7 +35,7 @@ export const DocsHeader = ({
 }: DocsHeaderProps) => {
   return (
     <header className={cx('bg-background-variant', className)}>
-      <H1 className="font-bold first-letter:uppercase">{title}</H1>
+      <H1 className="font-bold">{title}</H1>
       <P className="font-bold first-letter:uppercase">{description}</P>
 
       <li className="flex w-full flex-col gap-md">

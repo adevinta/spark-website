@@ -3,15 +3,18 @@ import { Tabs } from '@spark-ui/tabs'
 import { useRouter } from 'next/router'
 
 interface Props {
-  slug: string
+  componentName: string
+  componentTab: string
 }
 
-export const ComponentMenu = ({ slug }) => {
+const getRoute = ({componentName, componentTab}: {componentName?: string, componentTab?: string}) => `/${['docs', 'components', componentName, componentTab].filter(slug => !!slug).join('/')}`
+
+export const ComponentMenu = ({ componentName, componentTab }) => {
   const router = useRouter()
 
   const path = {
-    usage: `/docs/components/${slug}`,
-    props: `/docs/components/${slug}/props`,
+    usage: getRoute({componentName}),
+    props: getRoute({componentName, componentTab: 'props'}),
   }
 
   return (

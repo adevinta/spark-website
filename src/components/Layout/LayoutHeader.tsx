@@ -10,12 +10,14 @@ import { LogoIcon } from '@/components/Shared/Logo'
 import { LayoutContainer } from './LayoutContainer'
 import { LayoutNavButton } from './LayoutNavButton'
 import { CmdKTrigger } from '@/components/CmdK/CmdKTrigger'
+import {Doc} from "contentlayer/generated";
 
 export interface LayoutHeaderProps extends ComponentPropsWithoutRef<'header'> {
   hasSearch?: boolean
+  categories?: {[key: string]: Doc[]}
 }
 
-export const LayoutHeader = ({ hasSearch, className, ...others }: LayoutHeaderProps) => {
+export const LayoutHeader = ({ hasSearch, categories, className, ...others }: LayoutHeaderProps) => {
   return (
     <header
       className={cx(
@@ -46,7 +48,7 @@ export const LayoutHeader = ({ hasSearch, className, ...others }: LayoutHeaderPr
 
           {hasSearch && <CmdKTrigger />}
 
-          <LayoutNavButton className="lg:hidden" intent="neutral" design="ghost" />
+          <LayoutNavButton className="lg:hidden" intent="neutral" design="ghost" categories={categories}/>
         </div>
       </LayoutContainer>
     </header>

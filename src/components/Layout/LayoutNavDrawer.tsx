@@ -1,10 +1,13 @@
 import { Drawer, DrawerProps } from '@spark-ui/drawer'
 import { LayoutNav } from './LayoutNav'
 import { VisuallyHidden } from '@spark-ui/visually-hidden'
+import {Doc} from "contentlayer/generated";
 
-export type LayoutNavDrawerProps = DrawerProps
+export interface LayoutNavDrawerProps extends DrawerProps {
+  categories?: {[key: string]: Doc[]}
+}
 
-export const LayoutNavDrawer = ({ onOpenChange, ...others }: LayoutNavDrawerProps) => {
+export const LayoutNavDrawer = ({ onOpenChange, categories, ...others }: LayoutNavDrawerProps) => {
   const handleLinkClick = () => {
     onOpenChange(false)
   }
@@ -22,7 +25,7 @@ export const LayoutNavDrawer = ({ onOpenChange, ...others }: LayoutNavDrawerProp
           </Drawer.Header>
 
           <Drawer.Body>
-            <LayoutNav onLinkClick={handleLinkClick} className="h-screen" />
+            <LayoutNav onLinkClick={handleLinkClick} className="h-screen" categories={categories} />
           </Drawer.Body>
 
           <Drawer.CloseButton aria-label="Close menu" />

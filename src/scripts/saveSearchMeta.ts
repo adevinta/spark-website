@@ -7,7 +7,7 @@ import toc from 'markdown-toc'
 import { parseFrontMatter, fileToPath, removePrefix } from '@docusaurus/utils'
 import { getLocalData } from '@/utils/getLocalData'
 
-const docsDir = path.join(process.cwd(), 'src', 'docs', 'components')
+const docsDir = path.join(process.cwd(), 'src', 'content')
 const configDir = path.join(process.cwd(), 'src', 'config')
 
 interface ResultType {
@@ -31,9 +31,9 @@ interface TOCResultItem {
 }
 
 const getUrl = (file: string) => {
-  const [, , url] = file.match(/\/(.*)(\/docs\/.*\/.*)\/index.mdx/)
+  const [, , url] = file.match(/\/(.*)(\/content\/.*\/.*)\/index.mdx/)
 
-  return url
+  return url.replace('/content', '')
 }
 
 async function getMDXMeta(file: string) {
@@ -74,20 +74,38 @@ async function getMDXMeta(file: string) {
   return result
 }
 
+const walkDirSync = function(dir) {
+  let results = [];
+  const list = fs.readdirSync(dir);
+  list.forEach(function(file) {
+    file = dir + '/' + file;
+    const stat = fs.statSync(file);
+    if (stat && stat.isDirectory()) {
+      /* Recurse into a subdirectory */
+      results = results.concat(walkDirSync(file));
+    } else {
+      /* Is a file */
+      results.push(file);
+    }
+  });
+  return results;
+}
+
 async function saveSearchMeta(saveMode: 'local' = 'local') {
   let json: any = []
 
   try {
-    const pkgs = fs.readdirSync(docsDir)
+    const files = walkDirSync(docsDir).filter(pkgDir => pkgDir.split('/').at(-1) === 'index.mdx')
 
-    for (const pkg of pkgs) {
+    for (const file of files) {
       let result = []
-      const file = `${docsDir}/${pkg}/index.mdx`
 
       try {
-        result = await getMDXMeta(file)
+        if(fs.existsSync(file)) {
+          result = await getMDXMeta(file)
+          json.push(...result)
+        }
 
-        json.push(...result)
       } catch (error) {
         console.log(error)
       }
