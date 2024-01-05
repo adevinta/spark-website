@@ -9,6 +9,7 @@ import { ComponentMenu } from '@/components/Shared/ComponentMenu'
 import { allDocs, Doc } from 'contentlayer/generated'
 import { cx } from 'class-variance-authority'
 import { LayoutNav } from '@/components/Layout/LayoutNav'
+import { CustomProperties } from '@/components/Shared/CustomProperties'
 
 interface ThemeProps {
   categories: {
@@ -27,7 +28,9 @@ const ThemePage = ({ categories }: ThemeProps) => {
           <LayoutNav categories={categories} />
         </LayoutSideNav>
 
-        <main className="flex w-full flex-row">content</main>
+        <main className="flex w-full flex-row">
+          <CustomProperties />
+        </main>
       </LayoutContainer>
     </>
   )
