@@ -51,21 +51,22 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const categories = allDocs.reduce(
+    (categories, doc) => {
+      const category = doc.category
+
+      return {
+        ...categories,
+        ...(Object.keys(categories).includes(category) && {
+          [category]: [...categories[category], doc],
+        }),
+      }
+    },
+    { Foundations: [] },
+  )
   return {
     props: {
-      categories: allDocs.reduce(
-        (categories, doc) => {
-          const category = doc.category
-
-          return {
-            ...categories,
-            ...(Object.keys(categories).includes(category) && {
-              [category]: [...categories[category], doc],
-            }),
-          }
-        },
-        { Foundations: [] },
-      ),
+      categories,
     },
   }
 }
