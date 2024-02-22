@@ -59,6 +59,10 @@ interface DocsDetailPageProps {
 }
 const ThemePage = ({ categories, colorIndex }: DocsDetailPageProps) => {
   const [colors, setColors] = useLocalStorage('colorPalette', [])
+  const router = useRouter()
+
+  console.log(router)
+
   const { name, value } = colors[colorIndex] || {}
   const color = new Color(value)
   const [fieldName, setFieldName] = useState(name)
@@ -72,6 +76,15 @@ const ThemePage = ({ categories, colorIndex }: DocsDetailPageProps) => {
   }
 
   const [colorField, setColorField] = useState(oklchToHex({ light, chroma, hue }))
+
+  const handleSave =
+    (index = colorIndex, callback) =>
+    () => {
+      const nextColors = [...colors]
+      nextColors[index] = { name: fieldName, value: oklchToHex({ light, chroma, hue }) }
+      setColors(nextColors)
+      callback && callback()
+    }
 
   const fn = gaussian(5, factorValue)
 
@@ -259,13 +272,22 @@ const ThemePage = ({ categories, colorIndex }: DocsDetailPageProps) => {
             </div>
             <div className="flex w-full grow flex-row justify-between gap-lg md:pl-lg">
               <div className="flex flex-row gap-lg">
-                <Button design="outlined" intent="danger">
-                  Cancel
+                <Button intent="danger">Delete</Button>
+                <Button design="outlined" intent="danger" onClick={handleSave()}>
+                  Close
                 </Button>
-                <Button design="outlined" intent="basic">Add +</Button>
               </div>
-              <Button>Save</Button>
-            </div>
+              <div className="flex flex-row gap-lg">
+                <Button
+                  design="outlined"
+                  intent="basic"
+                  onClick={handleSave(colors.length)}
+                >
+                  Add +
+                </Button>
+                <Button onClick={handleSave()}>Save</Button>
+              </div>
+              </div>
           </article>
         </main>
       </LayoutContainer>
